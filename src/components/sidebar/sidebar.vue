@@ -8,7 +8,6 @@
           <li v-for="item in items" :key="item"
             :class="{
               'menu-title': !item.items,
-              'active': item === this.itemactive,
               'dropped': item.dropped
             }">
             <span v-if="!item.items">{{ item.title }}</span>
@@ -20,9 +19,10 @@
                 <span class="menu-arrow"></span>
               </a>
               <ul>
-                <li v-for="item2 in item.items" :key="item2">
-                  <a :href="item2.href" v-on:click="toggleSubItem(item, item2, $event)">{{ item2.title }}</a>
-                </li>
+                <router-link tag="li" v-for="item2 in item.items"
+                  :key="item2" :to="item2.path">
+                  <a>{{ item2.title }}</a>
+                </router-link>
               </ul>
             </template>
 
@@ -40,40 +40,68 @@
 export default {
   mounted() {
 
+    var items = require('./items.json');
+    let itemsByPath = {};
+    for(let i = 0; i < items.length; i++) {
 
+      let parent = items[i];
+      if (parent.items && parent.items.length > 0) {
+
+        for(let j = 0; j < parent.items.length; j++) {
+
+          let item = parent.items[j];
+          item.parent = parent;
+
+          if (!itemsByPath[item.path]) {
+            itemsByPath[item.path] = item;
+          }
+        }
+      }
+    }
+    this.items = items;
+
+    let setItem = (path) => {
+
+      let item = itemsByPath[path];
+      if (item) {
+
+        this.toggleItem(item.parent);
+      }
+    };
+
+    window.$on('routechanged', (d) => {
+
+      setItem(this.$route.path);
+    });
+    setItem(this.$route.path);
   },
   methods: {
     toggleItem(item, e) {
+
+      if (this.itemActive == item) {
+        return;
+      }
 
       if (this.itemActive)
       {
         this.itemActive.dropped = false;
       }
 
+      $('.sidebar-menu li.dropped > ul').slideUp(350);
+
       this.itemActive = item;
       this.itemActive.dropped = true;
 
-
-      // If item has child items, drop it like its hot
-      if (item.items && item.items.length > 0)  {
-
-        // Funky jQuery rocket science, cus we can!
-
-          //$(e.target).parents('ul:first').slideUp(350);
-        $(e.currentTarget).next("ul").slideDown(350);
-      }
-    },
-
-    toggleSubItem(item, subitem)
-    {
-
+      setTimeout(() => {
+        $('.sidebar-menu li.dropped > ul').slideDown(350);
+      });
     }
   },
   data() {
 
     return {
       itemActive: null,
-      items: require('./items.json')
+      items: [],
     };
   }
 }

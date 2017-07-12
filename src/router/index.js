@@ -13,27 +13,30 @@ const mymoduleFoosDetails = () =>
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'dashboard',
       component: Dashboard
     },
     {
       path: '/allinone',
-      name: 'allinone',
       component: AllInOne
     },
     {
       path: '/mymodule/foos',
-      name: 'mymodule-foos-list',
       component: mymoduleFoosList
     },
     {
       path: '/mymodule/foos/:id',
-      name: 'mymodule-foos-details',
       component: mymoduleFoosDetails
     }
   ]
-})
+});
+
+router.afterEach((to, from) => {
+
+  window.$broadcast('routechanged', { to: to, from: from });
+});
+
+export default router;

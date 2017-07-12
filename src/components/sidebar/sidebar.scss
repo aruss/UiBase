@@ -136,6 +136,10 @@
                   color: $custom;
                 }
               }
+
+              &.router-link-exact-active a {
+                color: $custom;
+              }
             }
           }
         }

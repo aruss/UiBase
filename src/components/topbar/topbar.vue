@@ -26,7 +26,7 @@
             <!-- item-->
             <div class="dropdown-item">
               <h5 class="text-overflow">
-                <small>Welcome ! John</small>
+                <small>Welcome ! Butch</small>
               </h5>
             </div>
 
@@ -79,7 +79,7 @@ export default {
 
 .topbar {
   position: fixed;
-  left: 0;  
+  left: 0;
   right: 0;
   top: 0;
   z-index: 999;
@@ -98,7 +98,7 @@ export default {
     }
 
     i {
-      color: $custom; // what a hack is this shit 
+      color: $custom; // what a hack is this shit
     }
 
     .icon-c-logo {
@@ -126,7 +126,7 @@ export default {
     margin-left: 180px;
   }
 
-  
+
   .navbar-custom {
     background-color: $dark;
     border-radius: 0;
