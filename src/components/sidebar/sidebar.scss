@@ -1,0 +1,146 @@
+@import "../app/scss/variables.scss";
+
+.sidebar {
+  bottom: 0;
+  top: 0;
+  width: $sidebar-width-large;
+  z-index: 2;
+  background: $white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: $header-height;
+
+  .sidebar-wrp {
+
+    .sidebar-menu {
+
+      padding-bottom: $gutter;
+      padding-top: $gutter;
+      width: 100%;
+
+      > ul {
+        border: 0;
+        font-weight: normal;
+        line-height: 1;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        text-decoration: none;
+
+        // First section elements
+        & > li {
+
+          // The small section title
+          &.menu-title {
+            padding: 0 $gutter $gutter $gutter;
+            letter-spacing: .035em;
+            pointer-events: none;
+            cursor: default;
+            font-size: 13px;
+          }
+
+          // Link of the fist element
+          > a {
+            cursor: pointer;
+            color: $dark;
+            display: block;
+            padding: 12px 20px;
+            margin: 4px 0;
+            border-left: 3px solid $white;
+
+            &:hover {
+              color: $custom;
+              text-decoration: none;
+            }
+
+            // The link icon
+            i {
+              display: inline-block;
+              font-size: 16px;
+              line-height: 17px;
+              margin-left: 3px;
+              margin-right: 15px;
+              text-align: center;
+              vertical-align: middle;
+              width: 20px;
+            }
+
+            // The link text
+            span {
+              vertical-align: middle;
+            }
+
+            // Arrow indicating the submenu items
+            span.menu-array {
+              -webkit-transition: -webkit-transform .15s;
+              -o-transition: -o-transform .15s;
+              transition: transform .15s;
+              position: absolute;
+              right: 20px;
+              display: inline-block;
+              font-family: 'Material Design Iconic Font';
+              text-rendering: auto;
+              line-height: 24px;
+              font-size: 16px;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              -webkit-transform: translate(0, 0);
+              -ms-transform: translate(0, 0);
+              -o-transform: translate(0, 0);
+              transform: translate(0, 0);
+              color: $muted;
+
+              &:before {
+                content: "\f1b6";
+              }
+            }
+          }
+
+          // First section is dropped/opened
+          &.dropped > a {
+            background: #f4f8fb !important;
+            border-left: 3px solid #5fbeaa;
+            color: #5fbeaa !important;
+          }
+
+          // Submenu
+          > ul {
+            display: none;
+            border: 0;
+            font-weight: normal;
+            line-height: 1;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-decoration: none;
+
+            & > li {
+              border: 0;
+              font-weight: normal;
+              line-height: 1;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              text-decoration: none;
+
+              & > a {
+                color: #75798B;
+                display: block;
+                padding: 10px 20px 10px 65px;
+                font-size: 0.95rem;
+
+                &:hover {
+                  color: $custom;
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <h4 class="page-title">Dashboard</h4>
+  <div class="container page">
+    <uib-page-header title="Dashboard"></uib-page-header>
 
   </div>
 </template>
 
 <script>
+
+const uibPageHeader = () => import('@/components/page/header.vue');
 
 export default {
   name: 'dashboard',
@@ -13,7 +15,7 @@ export default {
 
   },
   components: {
-
+    uibPageHeader
   }
 }
 </script>

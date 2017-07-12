@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper" class="forced">
-    <uib-menu-top></uib-menu-top>
-    <uib-menu-main></uib-menu-main>
+    <uib-top-bar></uib-top-bar>
+    <uib-side-bar></uib-side-bar>
     <div class="content-page">
       <div class="content">
         <router-view></router-view>
@@ -18,8 +18,8 @@ import '../../../node_modules/jquery/dist/jquery.js';
 import '../../../node_modules/tether/dist/js/tether.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.js';
 
-import uibMenuTop from '@/components/menutop/menutop.vue';
-import uibMenuMain from '@/components/menumain/menumain.vue';
+import uibTopBar from '@/components/sidebar/sidebar.vue';
+import uibSideBar from '@/components/topbar/topbar.vue';
 
 export default {
   name: 'app',
@@ -27,8 +27,8 @@ export default {
 
   },
   components: {
-    uibMenuTop,
-    uibMenuMain
+    uibTopBar,
+    uibSideBar    
   }
 };
 

@@ -27,6 +27,7 @@ export default {
     font-size: 1.2em;
     font-weight: 600;
     margin: 0;
+    line-height: 1em;
   }
 
   p {

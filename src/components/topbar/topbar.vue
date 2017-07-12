@@ -78,16 +78,43 @@ export default {
 @import "../app/scss/variables.scss";
 
 .topbar {
-  left: 0;
   position: fixed;
+  left: 0;  
   right: 0;
   top: 0;
   z-index: 999;
 
+  .logo {
+    color: $white;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    line-height: $header-height;
+    text-transform: uppercase;
+
+    h1 {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    i {
+      color: $custom; // what a hack is this shit 
+    }
+
+    .icon-c-logo {
+      display: none;
+    }
+  }
+
+
+
+
+
+
   .topbar-left {
     float: left;
     position: relative;
-    width: 240px;
+    width: $sidebar-width-large;
     z-index: 1;
     background-color: $dark;
   }
@@ -99,26 +126,7 @@ export default {
     margin-left: 180px;
   }
 
-  .logo {
-    color: $white!important;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: .05em;
-    line-height: 70px;
-    text-transform: uppercase;
-    h1 {
-      height: 50px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    i {
-      color: $custom;
-    }
-    .icon-c-logo {
-      display: none;
-    }
-  }
-
+  
   .navbar-custom {
     background-color: $dark;
     border-radius: 0;
