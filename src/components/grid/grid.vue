@@ -1,5 +1,5 @@
 <template>
-  <panel>
+  <panel :title="title" :subtitle="subtitle" class="grid">
     <div class="table-responsive">
       <table class="table table-hover table table-actions-bar">
         <thead>
@@ -33,7 +33,7 @@ require('@/components/grid/grid-row-link.js');
 
 export default {
   name: 'grid',
-  props: ['data'],
+  props: ['data', 'title', 'subtitle'],
   computed: {
     rows() {
 

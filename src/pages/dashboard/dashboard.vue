@@ -1,14 +1,11 @@
 <template>
   <div>
-    <h1>Dashboard</h1>
+    <h4 class="page-title">Dashboard</h4>
 
-    <grid></grid>
   </div>
 </template>
 
 <script>
-
-const Grid = () => import(/* webpackChunkName: "group-common" */ '@/components/grid/grid.vue');
 
 export default {
   name: 'dashboard',
@@ -16,7 +13,7 @@ export default {
 
   },
   components: {
-    Grid
+
   }
 }
 </script>

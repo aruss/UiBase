@@ -23,7 +23,17 @@ $lightdark-alt: #cccccc;
 $lightdark: #f4f8fb;
 $lightgray: #7a8c9a;
 $dark: #36404a;
-// Width variables
+
 $width: 100%;
-// Height variables
 $height: 100%;
+
+// C:\private\projects\eConduct\UiBase\node_modules\bootstrap\scss\_variables.scss
+@import "../../../../node_modules/bootstrap/scss/_variables.scss";
+
+$gutter: $grid-gutter-width-base / 2;
+
+$header-height: 70px;
+$sidebar-width-large: 240px;
+$sidebar-width-small: 70px;
+
+$footer-height: 60px;

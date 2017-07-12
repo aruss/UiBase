@@ -4,26 +4,22 @@
     <sidebar></sidebar>
     <div class="content-page">
       <div class="content">
-        <div class="container">
-          <router-view></router-view>
-        </div>
+        <router-view></router-view>
       </div>
       <div class="footer text-right">
           © 2017. All rights reserved.
       </div>
     </div>
-    <slidebar></slidebar>
   </div>
 </template>
 
 <script>
-import '../../../node_modules/jquery/dist/jquery.js'
-import '../../../node_modules/tether/dist/js/tether.js'
-import '../../../node_modules/bootstrap/dist/js/bootstrap.js'
+import '../../../node_modules/jquery/dist/jquery.js';
+import '../../../node_modules/tether/dist/js/tether.js';
+import '../../../node_modules/bootstrap/dist/js/bootstrap.js';
 
-import Topbar from '@/components/topbar/topbar.vue'
-import Sidebar from '@/components/sidebar/sidebar.vue'
-import Slidebar from '@/components/slidebar/slidebar.vue'
+import Topbar from '@/components/topbar/topbar.vue';
+import Sidebar from '@/components/sidebar/sidebar.vue';
 
 export default {
   name: 'app',
@@ -32,15 +28,16 @@ export default {
   },
   components: {
     Sidebar,
-    Topbar,
-    Slidebar
+    Topbar
   }
-}
+};
+
 </script>
 
 <style lang="scss">
 // Core variables and mixins
-@import "../../../node_modules/bootstrap/scss/_variables.scss";
+@import "./scss/variables.scss";
+
 @import "../../../node_modules/bootstrap/scss/mixins";
 @import "../../../node_modules/bootstrap/scss/custom";
 
@@ -87,7 +84,7 @@ export default {
 // Utility classes
 @import "../../../node_modules/bootstrap/scss/utilities";
 
-@import "./scss/variables.scss";
+// UiDash
 @import "./scss/common.scss";
 @import "./scss/helper.scss";
 @import "./scss/bootstrap-reset.scss";

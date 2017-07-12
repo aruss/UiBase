@@ -1,14 +1,35 @@
 <template>
-  <div>
-    <h1>Identity Page / Clients</h1>
-
+  <div class="container page">
+    <page-header title="Clients" subtitle="Some subtitle what ever it means"></page-header>
     <grid :data="gridData"></grid>
+
+    <panel>
+      hier details about clients yoo!
+    </panel>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-3">
+        <panel>1</panel>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-3">
+        <panel>2</panel>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-3">
+        <panel>3</panel>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-3">
+        <panel>4</panel>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
 const Grid = () => import(/* webpackChunkName: "group-common" */ '@/components/grid/grid.vue');
+const Panel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
+const PageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
+
 require('./grid-row-custom.js');
 // import ClientDetails from './client-details.vue';
 
@@ -27,7 +48,7 @@ export default {
         ],
         columns: [
           { title: 'ID', field: 'id', rowComponent: 'grid-row-checkbox' },
-          { title: 'Link', field: 'bar', rowComponent: 'grid-row-link'},
+          { title: 'Link', field: 'bar', rowComponent: 'grid-row-link', route: 'identity-clients-details', idField: 'id' },
           { title: 'Foo', field: 'foo', rowComponent: 'grid-row-default' },
           { title: 'Bar', field: 'bar', rowComponent: 'grid-row-custom'  },
         ]
@@ -35,7 +56,9 @@ export default {
     }
   },
   components: {
-    Grid
+    Grid,
+    Panel,
+    PageHeader
   }
 }
 </script>

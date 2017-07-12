@@ -20,7 +20,6 @@ export default {
 
     window.$on('slidebaropen', (d) => {
 
-      console.log("slidebaropen", d);
       this.opened = true;
       this.component = d.component;
     });
