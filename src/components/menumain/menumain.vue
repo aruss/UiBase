@@ -38,7 +38,6 @@
 <script>
 
 export default {
-  name: 'sidebar',
   mounted() {
 
     window.$on('funky', () => {
@@ -94,23 +93,22 @@ export default {
           dropped: false,
           items: [{
             title: 'Dashboard 1'
-          },
-          {
-            title: 'Dashboard 2'
           }]
         },
         {
-          title: 'Identity',
+          title: 'Examples',
           icon: 'ti-user',
           active: false,
           dropped: false,
           items: [{
-            title: 'Identity',
-            href: '#/identity'
-          },
-          {
-            title: 'Clients',
-            href: '#/identity/clients'
+            title: 'Foo List',
+            href: '#/mymodule/foos'
+          }, {
+            title: 'Foo Details (4711)',
+            href: '#/mymodule/foos/4711'
+          }, {
+            title: 'All in one',
+            href: '#/allinone'
           }]
         }
       ]
@@ -121,5 +119,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./sidebar.scss";
+@import "./menumain.scss";
 </style>

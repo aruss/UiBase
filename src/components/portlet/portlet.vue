@@ -1,12 +1,11 @@
 <template>
-  <div class="portlet">
+  <div class="uib-portlet">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'portlet'
 }
 </script>
 
@@ -14,7 +13,7 @@ export default {
 
 @import "../app/scss/variables.scss";
 
-.portlet {
+.uib-portlet {
   padding: 20px;
   border: 1px solid rgba(54, 64, 74, 0.05);
   border-radius: 5px;

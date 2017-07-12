@@ -1,24 +1,24 @@
 <template>
   <div class="container page">
-    <page-header title="Client" subtitle="Some subtitle what ever it means"></page-header>
+    <uib-page-header title="Client" subtitle="Some subtitle what ever it means"></uib-page-header>
 
-    <panel>
+    <uib-panel>
       hier details about clients yoo!
-    </panel>
+    </uib-panel>
 
 
     <div class="row">
       <div class="col-md-6 col-lg-6 col-xl-3">
-        <panel>1</panel>
+        <uib-panel>1</uib-panel>
       </div>
       <div class="col-md-6 col-lg-6 col-xl-3">
-        <panel>2</panel>
+        <uib-panel>2</uib-panel>
       </div>
       <div class="col-md-6 col-lg-6 col-xl-3">
-        <panel>3</panel>
+        <uib-panel>3</uib-panel>
       </div>
       <div class="col-md-6 col-lg-6 col-xl-3">
-        <panel>4</panel>
+        <uib-panel>4</uib-panel>
       </div>
     </div>
   </div>
@@ -27,8 +27,8 @@
 
 <script>
 
-const Panel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
-const PageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
+const uibPanel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
 
 export default {
   name: 'identity-client-details',
@@ -38,8 +38,8 @@ export default {
     }
   },
   components: {
-    Panel,
-    PageHeader
+    uibPanel,
+    uibPageHeader
   }
 }
 </script>

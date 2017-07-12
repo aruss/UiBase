@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+const Dashboard = () => import('@/pages/examples/dashboard.vue');
+const AllInOne = () => import('@/pages/examples/allinone.vue');
+
 // https://router.vuejs.org/en/advanced/lazy-loading.html
-const Dashboard = () => import('@/pages/dashboard/dashboard.vue');
+const mymoduleFoosList = () =>
+  import(/* webpackChunkName: "group-examples" */ '@/pages/examples/list.vue');
 
-const IdentityClientList = () =>
-  import(/* webpackChunkName: "group-identity" */ '@/pages/identity/client-list.vue');
-
-const IdentityClientDetails = () =>
-  import(/* webpackChunkName: "group-identity" */ '@/pages/identity/client-details.vue');
+const mymoduleFoosDetails = () =>
+  import(/* webpackChunkName: "group-examples" */ '@/pages/examples/details.vue');
 
 Vue.use(Router);
 
@@ -20,14 +21,19 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/identity/clients',
-      name: 'identity-clients-list',
-      component: IdentityClientList
+      path: '/allinone',
+      name: 'allinone',
+      component: AllInOne
     },
     {
-      path: '/identity/clients/:id',
-      name: 'identity-clients-details',
-      component: IdentityClientDetails
+      path: '/mymodule/foos',
+      name: 'mymodule-foos-list',
+      component: mymoduleFoosList
+    },
+    {
+      path: '/mymodule/foos/:id',
+      name: 'mymodule-foos-details',
+      component: mymoduleFoosDetails
     }
   ]
 })

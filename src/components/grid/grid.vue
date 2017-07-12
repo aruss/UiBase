@@ -1,5 +1,5 @@
 <template>
-  <panel :title="title" :subtitle="subtitle" class="grid">
+  <uib-panel :title="title" :subtitle="subtitle" class="grid">
     <div class="table-responsive">
       <table class="table table-hover table table-actions-bar">
         <thead>
@@ -19,20 +19,19 @@
         </tbody>
       </table>
     </div>
-  </panel>
+  </uib-panel>
 </template>
 
 <script>
 
-import Panel from '@/components/panel/panel.vue';
+import uibPanel from '@/components/panel/panel.vue';
 
-require('@/components/grid/grid-header-default.js');
-require('@/components/grid/grid-row-default.js');
-require('@/components/grid/grid-row-checkbox.js');
-require('@/components/grid/grid-row-link.js');
+require('./grid-header-default.js');
+require('./grid-row-default.js');
+require('./grid-row-checkbox.js');
+require('./grid-row-link.js');
 
 export default {
-  name: 'grid',
   props: ['data', 'title', 'subtitle'],
   computed: {
     rows() {
@@ -43,15 +42,15 @@ export default {
 
       return this.data.columns.map((c) => {
 
-        c.rowComponent = c.rowComponent || 'grid-row-default';
-        c.headerComponent = c.headerComponent || 'grid-header-default';
+        c.rowComponent = c.rowComponent || 'uib-grid-row-default';
+        c.headerComponent = c.headerComponent || 'uib-grid-header-default';
 
         return c;
       });
     }
   },
   components: {
-    Panel
+    uibPanel
   }
 }
 </script>

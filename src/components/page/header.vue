@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header">
+  <div class="uib-page-header">
     <h4>{{ title }}</h4>
     <p>{{ subtitle }}</p>
   </div>
@@ -11,7 +11,6 @@ style="overflow: hidden; outline: none;"
 <script>
 
 export default {
-  name: 'page-header',
   props: ['title', 'subtitle'],
 }
 </script>
@@ -21,7 +20,7 @@ export default {
 @import "../app/scss/variables.scss";
 
 /* Right sidebar */
-.page-header {
+.uib-page-header {
   padding-bottom: $gutter;
 
   h4 {

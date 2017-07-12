@@ -1,6 +1,6 @@
 
 <template>
-  <div class="slidebar nicescroll"
+  <div class="uib-slider nicescroll"
     :class="{'--open': opened }"
     tabindex="5000">
     <h4 class="text-center">Chat</h4>
@@ -15,7 +15,6 @@ style="overflow: hidden; outline: none;"
 <script>
 
 export default {
-  name: 'slidebar',
   mounted() {
 
     window.$on('slidebaropen', (d) => {
@@ -48,7 +47,7 @@ export default {
 @import "../app/scss/variables.scss";
 
 /* Right sidebar */
-.slidebar {
+.uib-slider {
   -moz-transition: all 200ms ease-out;
   -webkit-transition: all 200ms ease-out;
   background-color: $white;
