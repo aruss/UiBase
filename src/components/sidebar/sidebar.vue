@@ -3,7 +3,6 @@
     <div class="sidebar-wrp slimscrollleft">
       <!--- Divider -->
       <div class="sidebar-menu">
-
         <ul>
           <li v-for="item in items" :key="item"
             :class="{
@@ -14,9 +13,7 @@
 
             <template v-if="item.items">
               <a v-on:click="toggleItem(item, $event)" >
-                <i v-if="item.icon" :class="item.icon"></i>
-                <span> {{item.title}} </span>
-                <span class="menu-arrow"></span>
+                <i v-if="item.icon" :class="item.icon"></i><span>{{item.title}}</span><span class="menu-arrow"></span>
               </a>
               <ul>
                 <router-link tag="li" v-for="item2 in item.items"
@@ -31,6 +28,9 @@
         <div class="clearfix"></div>
       </div>
       <div class="clearfix"></div>
+      <div class="sidebar-footer">
+        Menu footer
+      </div>
     </div>
   </div>
 </template>

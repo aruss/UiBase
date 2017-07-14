@@ -1,5 +1,7 @@
 @import "../app/scss/variables.scss";
 
+$border-active-width: 3px;
+
 .sidebar {
   bottom: 0;
   top: 0;
@@ -11,6 +13,17 @@
   top: $header-height;
 
   .sidebar-wrp {
+
+    .sidebar-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        bottom: 0;
+        padding: $gutter;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        font-size: .7rem;
+    }
 
     .sidebar-menu {
 
@@ -45,9 +58,9 @@
             cursor: pointer;
             color: $dark;
             display: block;
-            padding: 12px 20px;
-            margin: 4px 0;
-            border-left: 3px solid $white;
+            padding: 12px $gutter;
+            margin: 0;
+            border-left: $border-active-width solid $white;
 
             &:hover {
               color: $custom;
@@ -59,11 +72,11 @@
               display: inline-block;
               font-size: 16px;
               line-height: 17px;
-              margin-left: 3px;
-              margin-right: 15px;
+              margin-left: 0;
+              margin-right: $gutter;
               text-align: center;
               vertical-align: middle;
-              width: 20px;
+              width: $gutter;
             }
 
             // The link text
@@ -100,7 +113,7 @@
           // First section is dropped/opened
           &.dropped > a {
             background: #f4f8fb !important;
-            border-left: 3px solid #5fbeaa;
+            border-left: $border-active-width solid #5fbeaa;
             color: #5fbeaa !important;
           }
 
@@ -129,8 +142,8 @@
               & > a {
                 color: #75798B;
                 display: block;
-                padding: 10px 20px 10px 65px;
-                font-size: 0.95rem;
+                padding: 10px $gutter 10px ($gutter * 3 + $border-active-width);
+                font-size: 0.90em;
 
                 &:hover {
                   color: $custom;
