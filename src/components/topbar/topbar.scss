@@ -1,0 +1,116 @@
+@import "../app/scss/variables.scss";
+
+.topbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  background-color: $dark;
+  .topbar-logo {
+    float: left;
+    position: relative;
+    width: $sidebar-width-opened;
+    z-index: 1;
+    .logo {
+      color: $white;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      line-height: $topbar-height;
+      text-transform: uppercase;
+      h1 {
+        margin: 0 auto;
+        text-align: center;
+      }
+      i {
+        color: $custom; // what a hack is this shit
+      }
+      .icon-c-logo {
+        display: none;
+      }
+    }
+  }
+  .topbar-content {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 0 10px;
+    margin-left: $sidebar-width-opened;
+    min-height: $topbar-height;
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        float: left;
+      }
+    }
+
+    .btn {
+        border: none;
+        color: $white;
+        display: inline-block;
+        height: $topbar-height;
+        background-color: $dark;
+        font-size: 1em;
+        outline: none;
+        cursor: pointer;
+        border-radius: 0;
+
+        &:focus {
+          outline:0;
+          box-shadow: none;
+        }
+    }
+
+    .btn.dropdown-toggle {
+
+      &:after {
+        border: 0;
+        margin: 0;
+      }
+
+      img {
+        height: 36px;
+        width: 36px;
+      }
+    }
+
+    .menu-right {
+      float: right;
+    }
+
+    .dropdown-menu {
+      margin-top: -6px;
+
+      .dropdown-item {
+
+        padding: ($gutter / 3 * 1) $gutter;
+
+        &:hover {
+          background-color: #f4f8fb;
+        }
+
+        i {
+          margin-right: $gutter;
+        }
+      }
+    }
+  }
+}
+
+// Closed sitebar
+body.sidebar-closed {
+  .topbar {
+    .topbar-logo {
+       width: $sidebar-width-closed;
+       overflow: hidden;
+    }
+
+    .topbar-content {
+      margin-left: $sidebar-width-closed;
+    }
+  }
+}

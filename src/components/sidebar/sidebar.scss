@@ -1,32 +1,31 @@
 @import "../app/scss/variables.scss";
 
 $border-active-width: 3px;
+$sidebar-width-submenu: 260px;
 
 .sidebar {
   bottom: 0;
   top: 0;
-  width: $sidebar-width-large;
+  width: $sidebar-width-opened;
   z-index: 2;
   background: $white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   position: absolute;
-  top: $header-height;
+  top: $topbar-height;
 
   .sidebar-wrp {
-
     .sidebar-footer {
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        bottom: 0;
-        padding: $gutter;
-        position: absolute;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        font-size: .7rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      bottom: 0;
+      padding: $gutter;
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      font-size: .7rem;
     }
 
     .sidebar-menu {
-
       padding-bottom: $gutter;
       padding-top: $gutter;
       width: 100%;
@@ -58,7 +57,7 @@ $border-active-width: 3px;
             cursor: pointer;
             color: $dark;
             display: block;
-            padding: 12px $gutter;
+            padding: ($gutter / 3 * 2) $gutter;
             margin: 0;
             border-left: $border-active-width solid $white;
 
@@ -85,7 +84,8 @@ $border-active-width: 3px;
             }
 
             // Arrow indicating the submenu items
-            span.menu-array {
+            b {
+              font-weight: normal;
               -webkit-transition: -webkit-transform .15s;
               -o-transition: -o-transform .15s;
               transition: transform .15s;
@@ -110,54 +110,144 @@ $border-active-width: 3px;
             }
           }
 
-          // First section is dropped/opened
-          &.dropped > a {
+          // First section is active
+          &.active > a {
             background: #f4f8fb !important;
             border-left: $border-active-width solid #5fbeaa;
             color: #5fbeaa !important;
           }
 
-          // Submenu
-          > ul {
-            display: none;
-            border: 0;
-            font-weight: normal;
-            line-height: 1;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            text-decoration: none;
+          // Submene
+          > div {
+            //display: none;
 
-            & > li {
-              border: 0;
-              font-weight: normal;
-              line-height: 1;
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              position: relative;
-              text-decoration: none;
+            a {
+              color: #75798B;
+              display: block;
+              padding: 10px $gutter 10px ($gutter * 3 + $border-active-width);
+              font-size: 0.90em;
 
-              & > a {
-                color: #75798B;
-                display: block;
-                padding: 10px $gutter 10px ($gutter * 3 + $border-active-width);
-                font-size: 0.90em;
-
-                &:hover {
-                  color: $custom;
-                }
+              &:hover {
+                color: $custom;
               }
 
-              &.router-link-exact-active a {
+              &.router-link-exact-active {
                 color: $custom;
               }
             }
           }
         }
       }
-
     }
   }
 }
+
+
+body.sidebar-closed {
+
+  .sidebar {
+    width: $sidebar-width-closed;
+
+    .sidebar-wrp {
+
+      .sidebar-footer {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .sidebar-menu {
+
+        > ul {
+
+          // First section elements
+          & > li {
+            position: relative;
+            white-space: nowrap;
+            margin-bottom: 3px;
+
+
+            // The small section title
+            &.menu-title {
+               display: none;
+            }
+
+            // Link of the fist element
+            > a {
+              padding: 15px 20px;
+              min-height: 52px;
+              border-left: $border-active-width solid #fff;
+
+              i {
+                margin-right: $gutter;
+                font-size:  1.3em;
+                display: inline-block;
+                line-height: 1em;
+                //margin-left: $border-active-width;
+                vertical-align: middle;
+                width: 1em;
+              }
+
+              span, b {
+                display: none;
+              }
+            }
+
+            // First section is active
+            &.active > a {
+              border-left: $border-active-width solid #5fbeaa;
+            }
+
+            // Submenu
+            & > div {
+
+              display: none;
+
+              a {
+
+                &:hover {
+
+                }
+
+                &.router-link-exact-active {
+
+                }
+              }
+            }
+
+            &:hover {
+
+              background-color: #f4f8fb;
+              width: $sidebar-width-submenu;
+
+
+              > a {
+                border-left: $border-active-width solid #5fbeaa;
+
+                i {
+                   margin-left: 0px;
+                }
+                span {
+                  display: inline-block;
+                   padding-left: 10px;
+                }
+              }
+
+              & > div {
+                background-color: #fff;
+                position: absolute;
+                display: block;
+                left: $sidebar-width-closed;
+                width: $sidebar-width-submenu - $sidebar-width-closed - 1px;
+                margin-left: 1px;
+                a {
+                  padding: $gutter;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

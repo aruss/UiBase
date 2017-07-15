@@ -95,19 +95,19 @@ a {
 /* Content */
 
 .content-page {
-  margin-left: $sidebar-width-large;
+  margin-left: $sidebar-width-opened;
   overflow: hidden;
 
   &>.content {
     padding-bottom: $footer-height;
-    padding-top: $header-height;
+    padding-top: $topbar-height;
     //padding: 20px 5px 15px 5px;
   }
 }
 
-#wrapper.enlarged {
+body.sidebar-closed {
   .content-page {
-    margin-left: $sidebar-width-small;
+    margin-left: $sidebar-width-closed;
   }
 }
 
@@ -121,13 +121,13 @@ a {
   padding: $gutter;
   position: absolute;
   right: 0;
-  left: $sidebar-width-large;
+  left: $sidebar-width-opened;
   font-size: .7rem;
 }
 
-#wrapper.enlarged {
+body.sidebar-closed {
   .footer {
-    left: $sidebar-width-small;
+    left: $sidebar-width-closed;
   }
 }
 

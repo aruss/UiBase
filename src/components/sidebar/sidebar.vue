@@ -7,20 +7,25 @@
           <li v-for="item in items" :key="item"
             :class="{
               'menu-title': !item.items,
-              'dropped': item.dropped
+              'active': item.active
             }">
             <span v-if="!item.items">{{ item.title }}</span>
 
             <template v-if="item.items">
               <a v-on:click="toggleItem(item, $event)" >
-                <i v-if="item.icon" :class="item.icon"></i><span>{{item.title}}</span><span class="menu-arrow"></span>
+                <i v-if="item.icon" :class="item.icon"></i><span>{{item.title}}</span><b class="menu-arrow"></b>
               </a>
-              <ul>
+              <div>
+                <router-link v-for="item2 in item.items" :key="item2" :to="item2.path">
+                  {{ item2.title }}
+                </router-link>
+              </div>
+              <!--<ul>
                 <router-link tag="li" v-for="item2 in item.items"
                   :key="item2" :to="item2.path">
                   <a>{{ item2.title }}</a>
                 </router-link>
-              </ul>
+              </ul>-->
             </template>
 
           </li>
@@ -40,7 +45,7 @@
 export default {
   mounted() {
 
-    var items = require('./items.json');
+    let items = require('./items.json');
     let itemsByPath = {};
     for(let i = 0; i < items.length; i++) {
 
@@ -74,6 +79,11 @@ export default {
       setItem(this.$route.path);
     });
     setItem(this.$route.path);
+
+    window.$on('sidebartoggle', (d) => {
+
+      setItem($('body').toggleClass("sidebar-closed"));
+    });
   },
   methods: {
     toggleItem(item, e) {
@@ -84,17 +94,23 @@ export default {
 
       if (this.itemActive)
       {
-        this.itemActive.dropped = false;
+        this.itemActive.active = false;
       }
 
-      $('.sidebar-menu li.dropped > ul').slideUp(350);
+      let isOpened = !$('body').hasClass('sidebar-closed');
+
+      if (isOpened) {
+       // $('.sidebar-menu li.active > div').slideUp(350);
+      }
 
       this.itemActive = item;
-      this.itemActive.dropped = true;
+      this.itemActive.active = true;
 
-      setTimeout(() => {
-        $('.sidebar-menu li.dropped > ul').slideDown(350);
-      });
+      if (isOpened) {
+        setTimeout(() => {
+          //$('.sidebar-menu li.active > div').slideDown(350);
+        });
+      }
     }
   },
   data() {
