@@ -16,18 +16,22 @@ Vue.use(Router);
 let router = new Router({
   routes: [
     {
+      name: 'home',
       path: '/',
       component: Dashboard
     },
     {
+      name: 'allinone',
       path: '/allinone',
       component: AllInOne
     },
     {
+      name: 'mymodule-foos-list',
       path: '/mymodule/foos',
       component: mymoduleFoosList
     },
     {
+      name: 'mymodule-foos-details',
       path: '/mymodule/foos/:id',
       component: mymoduleFoosDetails
     }
