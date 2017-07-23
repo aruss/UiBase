@@ -12,6 +12,7 @@
 <script>
 
 const uibGrid = () => import(/* webpackChunkName: "group-common" */ '@/components/grid/grid.vue');
+const uibPanel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
 const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
 
 require('./grid-row-custom.js');
@@ -39,6 +40,11 @@ export default {
     return {
       list: null,
       columns: [
+        /*{
+          title: '',
+          field: 'picture',
+          component: 'grid-row-image'
+        },*/
         {
           title: 'Name', field: 'name',
           component: 'grid-row-link',
@@ -52,7 +58,7 @@ export default {
         { title: 'Gender', field: 'gender' },
         { title: 'Balance', field: 'balance' },
         { title: 'Active', field: 'isActive' },
-        {
+        /*{
           component: 'grid-row-actions',
           actions: {
             method: (row, event) => {
@@ -60,12 +66,13 @@ export default {
               console.log('X', row, event);
             }
           }
-        }
+        }*/
       ]
     }
   },
   components: {
     uibGrid,
+    uibPanel,
     uibPageHeader
   }
 }

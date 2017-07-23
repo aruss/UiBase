@@ -18,47 +18,16 @@
     "active": false,
     "dropped": false,
     "items": [{
-      "title": "Foo List",
-      "path": "/mymodule/foos"
+      "title": "List view",
+      "path": "/list-view"
     }, {
-      "title": "Foo Details (4711)",
-      "path": "/mymodule/foos/4711"
+      "title": "Details View",
+      "path": "/detail-view/4711"
+    }, {
+      "title": "List and Details",
+      "path": "/list-detail-view/4711"
     }, {
       "title": "All in one",
-      "path": "/allinone"
-    }]
-  },
-  {
-    "title": "Foo",
-    "icon": "ti-plus",
-    "active": false,
-    "dropped": false,
-    "items": [{
-      "title": "Foo 1",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 2",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 3",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 4",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 5",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 6",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 7",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 8",
-      "path": "/allinone"
-    }, {
-      "title": "Foo 9",
       "path": "/allinone"
     }]
   }

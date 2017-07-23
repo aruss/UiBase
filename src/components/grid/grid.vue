@@ -33,8 +33,8 @@
       </table>
     </div>
     <div class="row" v-if="list">
-      <div class="col-sm-12 col-md-6"><span>Showing {{itemsFrom}} to {{itemsTo}} of {{list.total}} entries</span>
-
+      <div class="col-sm-12 col-md-6">
+        <span class="pagination-info">Showing {{itemsFrom}} to {{itemsTo}} of {{list.total}} entries</span>
       </div>
       <div class="col-sm-12 col-md-6">
         <uib-pagination

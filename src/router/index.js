@@ -27,12 +27,17 @@ let router = new Router({
     },
     {
       name: 'mymodule-foos-list',
-      path: '/mymodule/foos',
+      path: '/list-view',
       component: mymoduleFoosList
     },
     {
       name: 'mymodule-foos-details',
-      path: '/mymodule/foos/:id',
+      path: '/detail-view/:id',
+      component: mymoduleFoosDetails
+    },
+    {
+      name: 'mymodule-foos',
+      path: '/list-detail-view/:id',
       component: mymoduleFoosDetails
     }
   ]

@@ -49,4 +49,13 @@
       border-top: none;
     }
   }
+
+  .pagination {
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+
+  .pagination-info {
+    font-size: 0.875rem;
+  }
 }
