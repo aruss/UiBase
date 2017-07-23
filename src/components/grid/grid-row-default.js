@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-Vue.component('uib-grid-row-default', {
-  template: '<span>{{ row[column.field] }}</span>',
-  props: ['column', 'row']
+Vue.component('grid-row-default', {
+  template: '<span>{{ item[column.field] }}</span>',
+  props: ['column', 'item']
 });

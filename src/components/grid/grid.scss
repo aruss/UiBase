@@ -25,6 +25,10 @@
     }
     tbody {
       tr {
+
+        &:hover {
+          background-color: $lightdark;
+        }
         td {
           white-space: nowrap;
 

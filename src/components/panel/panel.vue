@@ -1,6 +1,6 @@
 <template>
-  <div class="uib-panel">
-    <h4 v-if="title" class="m-t-0 header-title"><b>{{ title }}</b></h4>
+  <div class="panel">
+    <b v-if="title">{{ title }}</b>
     <p v-if="subtitle">{{ subtitle }}</p>
     <slot></slot>
   </div>
@@ -8,7 +8,10 @@
 
 <script>
 export default {
-  props: ['title', 'subtitle'],
+  props: [
+    'title',
+    'subtitle'
+  ],
 }
 </script>
 
@@ -16,13 +19,28 @@ export default {
 
 @import "../app/scss/variables.scss";
 
-.uib-panel {
+.panel {
   padding: $gutter;
   margin-bottom: $gutter;
   border: 1px solid rgba(54, 64, 74, 0.05);
   border-radius: 5px;
   background-clip: padding-box;
   background-color: $white;
+
+  b {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1em;
+  }
+
+  p {
+    margin-top: $gutter / 2;
+    line-height: 1em;
+    margin-bottom: $gutter;
+  }
 }
 
 </style>

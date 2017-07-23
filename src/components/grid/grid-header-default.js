@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-Vue.component('uib-grid-header-default', {
+Vue.component('grid-header-default', {
   template: '<span> {{ column.title }}</span>',
-  props: ['column', 'row']
+  props: ['column', 'item']
 });

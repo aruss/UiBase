@@ -28,7 +28,7 @@ export default {
   },
   components: {
     uibTopBar,
-    uibSideBar    
+    uibSideBar
   }
 };
 
@@ -92,4 +92,5 @@ export default {
 @import "./scss/icons/dripicons.scss";
 @import "./scss/icons/material-design-iconic-font.scss";
 @import "./scss/icons/themify-icons.scss";
+@import "./scss/icons/font-awesome.scss";
 </style>
