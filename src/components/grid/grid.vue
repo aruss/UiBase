@@ -68,19 +68,31 @@ export default {
     'small',
     'stripped'
   ],
+
+  data() {
+    return {
+      pageCurrent: 0
+    };
+  },
+
   computed: {
+
     pagesCurrent() {
       return Math.ceil(this.list.total / this.list.take);
     },
+
     pagesTotal() {
       return this.list.skip / this.list.take + 1;
     },
+
     itemsFrom() {
       return this.list.skip +1;
     },
+
     itemsTo() {
       return Math.min(this.list.skip + this.list.take, this.list.total);
     },
+
     cols() {
 
       return this.columns.map((c) => {

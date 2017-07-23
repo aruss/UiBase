@@ -1,6 +1,6 @@
 {
   "take": 10,
-  "skip": 10,
+  "skip": 0,
   "total": 260,
   "sort": {
     "name": 1

@@ -15,7 +15,6 @@ const uibGrid = () => import(/* webpackChunkName: "group-common" */ '@/component
 const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
 
 require('./grid-row-custom.js');
-// import ClientDetails from './client-details.vue';
 
 export default {
   methods: {
@@ -49,7 +48,7 @@ export default {
         { title: 'Phone', field: 'phone' },
         { title: 'Company', field: 'company' },
         { title: 'Age', field: 'age' },
-        { title: 'Gender', field: 'gender' },
+        { title: 'Gender', field: 'gender', component: 'grid-row-custom' },
         { title: 'Balance', field: 'balance' },
         { title: 'Active', field: 'isActive' },
         {
