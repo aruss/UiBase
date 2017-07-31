@@ -4,7 +4,7 @@
       <!--- Divider -->
       <div class="sidebar-menu">
         <ul>
-          <li v-for="item in items" :key="item"
+          <li v-for="item in items" :key="item.key"
             :class="{
               'menu-title': !item.items,
               'active': item.active
@@ -16,7 +16,7 @@
                 <i v-if="item.icon" :class="item.icon"></i><span>{{item.title}}</span><b class="menu-arrow"></b>
               </a>
               <div>
-                <router-link v-for="item2 in item.items" :key="item2" :to="item2.path">
+                <router-link v-for="item2 in item.items" :key="item2.key" :to="item2.path">
                   {{ item2.title }}
                 </router-link>
               </div>
@@ -50,11 +50,13 @@ export default {
     for(let i = 0; i < items.length; i++) {
 
       let parent = items[i];
+      parent.key = i; 
       if (parent.items && parent.items.length > 0) {
 
         for(let j = 0; j < parent.items.length; j++) {
 
           let item = parent.items[j];
+          item.key = j;  
           item.parent = parent;
 
           if (!itemsByPath[item.path]) {
@@ -76,9 +78,13 @@ export default {
 
     window.$on('routechanged', (d) => {
 
-      setItem(this.$route.path);
+      if (this.$route) {
+        setItem(this.$route.path);
+      }
     });
-    setItem(this.$route.path);
+    if (this.$route) {
+      setItem(this.$route.path);
+    }
 
     window.$on('sidebartoggle', (d) => {
 

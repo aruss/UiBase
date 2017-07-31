@@ -12,7 +12,7 @@
 
 <script>
 
-import uibPanel from '@/components/panel/panel.vue';
+import uibPanel from '../panel/panel.vue';
 
 require('./grid-row-checkbox.js');
 require('./grid-row-link.js');
