@@ -4,7 +4,7 @@
   },
   {
     "title": "Dashboard",
-    "icon": "ti-home",
+    "icon": "dripicons-graph-line",
     "active": true,
     "dropped": false,
     "items": [{
@@ -22,10 +22,10 @@
       "path": "/list-view"
     }, {
       "title": "Details View",
-      "path": "/detail-view/4711"
+      "path": "/detail-view/596aac8f33122fe6a912930f"
     }, {
       "title": "List and Details",
-      "path": "/list-detail-view/4711"
+      "path": "/list-detail-view/596aac8f33122fe6a912930f"
     }, {
       "title": "All in one",
       "path": "/allinone"
