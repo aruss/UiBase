@@ -18,8 +18,8 @@ import '../../../node_modules/jquery/dist/jquery.js';
 import '../../../node_modules/tether/dist/js/tether.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.js';
 
-import uibTopBar from '@/components/sidebar/sidebar.vue';
-import uibSideBar from '@/components/topbar/topbar.vue';
+import uibTopBar from '../sidebar/sidebar.vue';
+import uibSideBar from '../topbar/topbar.vue';
 
 export default {
   name: 'app',

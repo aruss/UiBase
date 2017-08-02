@@ -48,8 +48,8 @@
 
 <script>
 
-import uibPanel from '@/components/panel/panel.vue';
-import uibPagination from '@/components/pagination/pagination.vue';
+import uibPanel from '../panel/panel.vue';
+import uibPagination from '../pagination/pagination.vue';
 
 require('./grid-header-default.js');
 require('./grid-row-default.js');

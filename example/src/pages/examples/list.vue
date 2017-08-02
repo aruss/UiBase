@@ -11,8 +11,8 @@
 
 <script>
 
-const uibGrid = () => import(/* webpackChunkName: "group-common" */ '@/components/grid/grid.vue');
-const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
+const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/lib/components/grid/grid.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/lib/components/page/header.vue');
 
 require('./grid-row-custom.js');
 

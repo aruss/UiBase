@@ -27,11 +27,10 @@
 
 <script>
 
-const uibPanel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
-const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
+const uibPanel = require('../../components/panel/panel.vue');
+const uibPageHeader = require('../../components/page/header.vue');
 
 export default {
-  name: 'identity-client-details',
   data() {
     return {
 
