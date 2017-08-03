@@ -1,7 +1,8 @@
 
 import Vue from 'vue';
 import App from './components/app/app.vue';
-import RouterFactory from './router-factory.js';
+import RouterBuilder from './router-builder.js';
+import MenuBuilder from './menu-builder.js';
 
 Vue.config.productionTip = false
 
@@ -28,21 +29,25 @@ window.$on = function (name, func)
 
 export default class UiBase
 {
-  static get routerFactory()
+  static get routerBuilder()
   {
-    return this._routerFac ? 
-      this._routerFac : 
-      this._routerFac = new RouterFactory(); 
+    return this._routerBuilder ?
+      this._routerBuilder :
+      this._routerBuilder = new RouterBuilder();
+  }
+
+  static get menuBuilder()
+  {
+    return this._menuBuilder ?
+      this._menuBuilder :
+      this._menuBuilder = new MenuBuilder();
   }
 
   static initialize()
   {
-
-    this.bus = new Vue();
-
     window.base = new Vue({
       el: '#app',
-      router: this.routerFactory.createRouter(),
+      router: this.routerBuilder.createRouter(),
       template: '<App/>',
       components: {
         App

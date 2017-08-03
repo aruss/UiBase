@@ -4,7 +4,7 @@ import Lazy from 'lazy.js';
 
 Vue.use(VueRouter);
 
-export default class RouterFactory
+export default class RouterBuilder
 {
   constructor()
   {
