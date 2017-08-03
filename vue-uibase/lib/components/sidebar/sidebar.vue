@@ -34,7 +34,7 @@
       </div>
       <div class="clearfix"></div>
       <div class="sidebar-footer">
-        Menu footer
+        <button type="button" class="btn btn-sidebartoggle" v-on:click.stop="$broadcast('sidebartoggle')"><i class="dripicons-chevron-left"></i></button>
       </div>
     </div>
   </div>
@@ -104,7 +104,6 @@ export default {
       }
 
       let isOpened = !$('body').hasClass('sidebar-closed');
-
       if (isOpened) {
        // $('.sidebar-menu li.active > div').slideUp(350);
       }

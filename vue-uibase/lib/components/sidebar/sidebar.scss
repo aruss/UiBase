@@ -17,12 +17,23 @@ $sidebar-width-submenu: 260px;
     .sidebar-footer {
       border-top: 1px solid rgba(0, 0, 0, 0.1);
       bottom: 0;
-      padding: $gutter;
+      height: $footer-height;
       position: absolute;
       right: 0;
       left: 0;
       bottom: 0;
       font-size: .7rem;
+
+      .btn-sidebartoggle {
+
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        line-height: $footer-height;
+        outline: none;
+      }
     }
 
     .sidebar-menu {
@@ -153,6 +164,10 @@ body.sidebar-closed {
       .sidebar-footer {
         overflow: hidden;
         white-space: nowrap;
+
+        .btn-sidebartoggle i:before {
+          content: "\56" !important;
+        }
       }
 
       .sidebar-menu {

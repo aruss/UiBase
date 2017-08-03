@@ -59,7 +59,7 @@ p {
   margin-bottom: 10px;
 }
 
-* {
+*:focus, textarea:focus, input:focus {
   outline: none !important;
 }
 
@@ -123,6 +123,7 @@ body.sidebar-closed {
   right: 0;
   left: $sidebar-width-opened;
   font-size: .7rem;
+  height: $footer-height;
 }
 
 body.sidebar-closed {
