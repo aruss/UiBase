@@ -42,21 +42,55 @@
 
 <script>
 
+import UiBase from '../../uibase';
+
 export default {
   mounted() {
 
-    let items = require('./items.json');
+    let items = UiBase.menu.getSitebarItems();
+
+    // transforme it to view model
+    let vm = [];
+    let itemsByPath = {};
+    for(let i = 0; i < items.length; i++) {
+
+      let item = items[i];
+      vm.push({
+        key: i,
+        title: item.title
+      });
+
+      for(let j = 0; j < item.items.length; j++) {
+
+        let item2 = item.items[j];
+        vm.push({
+          key: j,
+          title: item2.title,
+          icon: item2.icon,
+          items: item2.items
+        });
+
+        /*item2.items.forEach((item3) => {
+
+          vm.push(item3);
+        });*/
+      }
+    }
+
+    this.items = vm;
+
+    /*let items = require('./items.json');
     let itemsByPath = {};
     for(let i = 0; i < items.length; i++) {
 
       let parent = items[i];
-      parent.key = i; 
+      parent.key = i;
       if (parent.items && parent.items.length > 0) {
 
         for(let j = 0; j < parent.items.length; j++) {
 
           let item = parent.items[j];
-          item.key = j;  
+          item.key = j;
           item.parent = parent;
 
           if (!itemsByPath[item.path]) {
@@ -65,7 +99,7 @@ export default {
         }
       }
     }
-    this.items = items;
+    this.items = items;*/
 
     let setItem = (path) => {
 

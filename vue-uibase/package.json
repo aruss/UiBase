@@ -5,7 +5,7 @@
     "docs": "cd docs && gitbook serve",
     "docs:deploy": "bash ./docs/deploy.sh",
     "lint": "eslint lib",
-    "test": "eslint lib && mocha --slow 5000 --timeout 10000"
+    "test": "mocha --slow 5000 --timeout 10000"
   },
   "license": "MIT",
   "main": "index.js",

@@ -29,14 +29,14 @@ window.$on = function (name, func)
 
 export default class UiBase
 {
-  static get routerBuilder()
+  static get router()
   {
     return this._routerBuilder ?
       this._routerBuilder :
       this._routerBuilder = new RouterBuilder();
   }
 
-  static get menuBuilder()
+  static get menu()
   {
     return this._menuBuilder ?
       this._menuBuilder :
@@ -47,7 +47,7 @@ export default class UiBase
   {
     window.base = new Vue({
       el: '#app',
-      router: this.routerBuilder.createRouter(),
+      router: this.router.buildRouter(),
       template: '<App/>',
       components: {
         App

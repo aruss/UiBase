@@ -1,1 +1,1 @@
-module.exports = require('./lib/uibase')
+module.exports = require('./src/uibase')
