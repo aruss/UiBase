@@ -6,12 +6,11 @@
 </template>
 
 <script>
-
-const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue')
 
 export default {
   name: 'dashboard',
-  mounted() {
+  mounted () {
 
   },
   components: {

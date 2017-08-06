@@ -13,27 +13,22 @@ style="overflow: hidden; outline: none;"
 style="overflow: hidden; outline: none;"
 -->
 <script>
-
 export default {
-  mounted() {
-
+  mounted () {
     window.$on('slidebaropen', (d) => {
-
-      this.opened = true;
-      this.component = d.component;
-    });
+      this.opened = true
+      this.component = d.component
+    })
   },
-  data() {
-
+  data () {
     return {
       opened: false,
       component: null
-    };
+    }
   },
   methods: {
-    close() {
-
-      this.opened = false;
+    close () {
+      this.opened = false
     }
   },
   components: {

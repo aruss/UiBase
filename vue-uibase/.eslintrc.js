@@ -8,14 +8,15 @@ module.exports = {
   },
   env: {
     browser: true,
+    jquery: true
   },
-  extends: 'airbnb',
+  extends: 'standard',
   // required to lint *.vue files
   plugins: [
     'html'
   ],
   // add your custom rules here
-  'rules': {
+  rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
@@ -23,10 +24,6 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
-    'space-before-function-paren': 0,
-
-    'padded-blocks': 0,
-
-    'no-unused-vars': 'warn'
+    'no-return-assign': 0
   }
 }

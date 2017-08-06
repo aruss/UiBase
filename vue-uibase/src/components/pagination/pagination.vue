@@ -25,7 +25,7 @@ export default {
     'take',
     'skip',
     'total'
-  ],
+  ]
 }
 </script>
 

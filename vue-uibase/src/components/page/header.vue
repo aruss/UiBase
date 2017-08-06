@@ -6,12 +6,11 @@
 </template>
 
 <script>
-
 export default {
   props: [
     'title',
     'subtitle'
-  ],
+  ]
 }
 </script>
 

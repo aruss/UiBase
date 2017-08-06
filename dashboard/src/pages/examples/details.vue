@@ -26,13 +26,11 @@
 </template>
 
 <script>
-
-const uibPanel = () => import(/* webpackChunkName: "group-common" */ '@/components/panel/panel.vue');
-const uibPageHeader = () => import(/* webpackChunkName: "group-common" */ '@/components/page/header.vue');
+const uibPanel = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/panel/panel.vue')
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue')
 
 export default {
-  name: 'identity-client-details',
-  data() {
+  data () {
     return {
 
     }

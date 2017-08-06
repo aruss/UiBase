@@ -41,45 +41,41 @@
 </template>
 
 <script>
-
-import UiBase from '../../uibase';
+import UiBase from '../../main'
 
 export default {
-  mounted() {
-
-    let items = UiBase.menu.getSitebarItems();
+  mounted () {
+    let items = UiBase.menu.getSitebarItems()
 
     // transforme it to view model
-    let vm = [];
-    let itemsByPath = {};
-    for(let i = 0; i < items.length; i++) {
-
-      let item = items[i];
+    let vm = []
+    let itemsByPath = {}
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i]
       vm.push({
         key: i,
         title: item.title
-      });
+      })
 
-      for(let j = 0; j < item.items.length; j++) {
-
-        let item2 = item.items[j];
+      for (let j = 0; j < item.items.length; j++) {
+        let item2 = item.items[j]
         vm.push({
           key: j,
           title: item2.title,
           icon: item2.icon,
           items: item2.items
-        });
+        })
 
-        /*item2.items.forEach((item3) => {
+        /* item2.items.forEach((item3) => {
 
           vm.push(item3);
-        });*/
+        }); */
       }
     }
 
-    this.items = vm;
+    this.items = vm
 
-    /*let items = require('./items.json');
+    /* let items = require('./items.json');
     let itemsByPath = {};
     for(let i = 0; i < items.length; i++) {
 
@@ -99,65 +95,58 @@ export default {
         }
       }
     }
-    this.items = items;*/
+    this.items = items; */
 
     let setItem = (path) => {
-
-      let item = itemsByPath[path];
+      let item = itemsByPath[path]
       if (item) {
-
-        this.toggleItem(item.parent);
+        this.toggleItem(item.parent)
       }
-    };
+    }
 
     window.$on('routechanged', (d) => {
-
       if (this.$route) {
-        setItem(this.$route.path);
+        setItem(this.$route.path)
       }
-    });
+    })
     if (this.$route) {
-      setItem(this.$route.path);
+      setItem(this.$route.path)
     }
 
     window.$on('sidebartoggle', (d) => {
-
-      setItem($('body').toggleClass("sidebar-closed"));
-    });
+      setItem($('body').toggleClass('sidebar-closed'))
+    })
   },
   methods: {
-    toggleItem(item, e) {
-
-      if (this.itemActive == item) {
-        return;
+    toggleItem (item, e) {
+      if (this.itemActive === item) {
+        return
       }
 
-      if (this.itemActive)
-      {
-        this.itemActive.active = false;
+      if (this.itemActive) {
+        this.itemActive.active = false
       }
 
-      let isOpened = !$('body').hasClass('sidebar-closed');
+      let isOpened = !$('body').hasClass('sidebar-closed')
       if (isOpened) {
-       // $('.sidebar-menu li.active > div').slideUp(350);
+        // $('.sidebar-menu li.active > div').slideUp(350);
       }
 
-      this.itemActive = item;
-      this.itemActive.active = true;
+      this.itemActive = item
+      this.itemActive.active = true
 
       if (isOpened) {
         setTimeout(() => {
-          //$('.sidebar-menu li.active > div').slideDown(350);
-        });
+          // $('.sidebar-menu li.active > div').slideDown(350);
+        })
       }
     }
   },
-  data() {
-
+  data () {
     return {
       itemActive: null,
-      items: [],
-    };
+      items: []
+    }
   }
 }
 </script>

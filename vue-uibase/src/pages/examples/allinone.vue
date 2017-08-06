@@ -26,12 +26,11 @@
 </template>
 
 <script>
-
-const uibPanel = require('../../components/panel/panel.vue');
-const uibPageHeader = require('../../components/page/header.vue');
+const uibPanel = require('../../components/panel/panel.vue')
+const uibPageHeader = require('../../components/page/header.vue')
 
 export default {
-  data() {
+  data () {
     return {
 
     }
@@ -42,7 +41,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
 
 </style>

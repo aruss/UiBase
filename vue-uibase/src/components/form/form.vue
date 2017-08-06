@@ -11,28 +11,24 @@
 </template>
 
 <script>
+import uibPanel from '../panel/panel.vue'
 
-import uibPanel from '../panel/panel.vue';
-
-require('./grid-row-checkbox.js');
-require('./grid-row-link.js');
+require('./grid-row-checkbox.js')
+require('./grid-row-link.js')
 
 export default {
   props: ['data', 'title', 'subtitle'],
   computed: {
-    rows() {
-
-      return this.data.rows;
+    rows () {
+      return this.data.rows
     },
-    columns() {
-
+    columns () {
       return this.data.columns.map((c) => {
+        c.rowComponent = c.rowComponent || 'uib-grid-row-default'
+        c.headerComponent = c.headerComponent || 'uib-grid-header-default'
 
-        c.rowComponent = c.rowComponent || 'uib-grid-row-default';
-        c.headerComponent = c.headerComponent || 'uib-grid-header-default';
-
-        return c;
-      });
+        return c
+      })
     }
   },
   components: {

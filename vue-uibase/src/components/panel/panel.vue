@@ -11,7 +11,7 @@ export default {
   props: [
     'title',
     'subtitle'
-  ],
+  ]
 }
 </script>
 
