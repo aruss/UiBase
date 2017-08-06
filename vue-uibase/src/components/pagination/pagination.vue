@@ -1,5 +1,6 @@
 <template>
   <nav>
+    {{ total }}
     <ul class="pagination"
       :class="{
         'pagination-sm': small
@@ -7,9 +8,7 @@
       <li class="page-item disabled">
         <a class="page-link" href="#" tabindex="-1">Previous</a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li  v-for="pageIndex in total"  class="page-item"><a class="page-link" href="#">{{ pageIndex }}</a></li>
       <li class="page-item">
         <a class="page-link" href="#">Next</a>
       </li>

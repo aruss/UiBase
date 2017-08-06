@@ -11,7 +11,7 @@ const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-u
 export default {
   name: 'dashboard',
   mounted () {
-
+    
   },
   components: {
     uibPageHeader

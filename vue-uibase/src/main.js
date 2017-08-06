@@ -5,6 +5,7 @@ import RouterBuilder from './router-builder.js'
 import MenuBuilder from './menu-builder.js'
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 // Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
 Vue.mixin({

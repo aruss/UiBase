@@ -2,9 +2,10 @@
   <div class="container page">
     <uib-page-header title="Foos" subtitle="Here some kind of explanation what this hack is all about"></uib-page-header>
     <uib-grid
+      v-on:rowclick="onRowClick"
       :hover="true"
       :small="true"
-      :listx="list"
+      :list="list"
       :columns="columns"></uib-grid>
   </div>
 </template>
@@ -18,38 +19,27 @@ require('./grid-row-custom.js')
 export default {
   methods: {
     fetch () {
-      this.list = require('./data-list.json')
 
-      var that = this
+      let list = require('./data-list.json'); 
 
-      return new Promise((resolve, reject) => {
+      this.list = list; 
+
+      // Fake API call
+      /*new Promise((resolve, reject) => {
         setTimeout(function () {
-          resolve({
-            'take': 10,
-            'skip': 0,
-            'total': 260,
-            'sort': {
-              'name': 1
-            },
-            'items': [{
-              '_id': '596aac8f33122fe6a912930f',
-              'name': 'Fitzpatrick Cantu',
-              'phone': '+1 (857) 579-3382',
-              'address': '386 Garfield Place, Bourg, California, 2331',
-              'picture': 'http://placehold.it/32x32',
-              'isActive': false,
-              'balance': '$3,594.36',
-              'age': 28,
-              'gender': 'male',
-              'company': 'REMOLD',
-              'email': 'fitzpatrickcantu@remold.com'
-            }]
-          })
+          resolve(list); 
         }, 500)
-      }).then((x) => {
-        console.log(that === this)
-        this.list = x
-      })
+      }).then((r) => {
+        this.list = r
+      })*/
+
+      this.$route.push('/somewhere-else');
+    },
+
+    onRowClick (e, item) {
+
+      this.$route.push('/somewhere-else');
+      console.log('onRowClick', e, item); 
     }
   },
   mounted () {
@@ -59,13 +49,7 @@ export default {
     return {
       list: null,
       columns: [
-        {
-          title: 'Name',
-          field: 'name',
-          component: 'grid-row-link',
-          route: 'mymodule-foos-details',
-          idField: '_id'
-        },
+        { title: 'Name', field: 'name' },
         { title: 'E-Mail', field: 'email' },
         { title: 'Phone', field: 'phone' },
         { title: 'Company', field: 'company' },
@@ -75,11 +59,12 @@ export default {
         { title: 'Active', field: 'isActive' },
         {
           component: 'grid-row-actions',
-          actions: {
-            method: (row, event) => {
-              console.log('X', row, event)
+          actions: [{
+            icon: 'fa fa-remove',
+            method: (e, item) => {
+              console.log('action method!', e, item); 
             }
-          }
+          }]
         }
       ]
     }

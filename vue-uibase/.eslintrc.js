@@ -24,6 +24,10 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
-    'no-return-assign': 0
+    'no-return-assign': 0,
+    'no-trailing-spaces': 0,
+    'semi': 0,
+    'padded-blocks': 0,
+    'spaced-comment': 0 // Thats fucking annoying...
   }
 }
