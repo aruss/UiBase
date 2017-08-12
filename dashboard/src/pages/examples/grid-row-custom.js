@@ -1,6 +1,8 @@
-import Vue from 'vue'
+import UiBase from 'vue-uibase';
 
-Vue.component('grid-row-custom', {
-  template: '<div class="text-md-center"><i class="fa" :class="{\'fa-mars\': item[column.field] === \'male\', \'fa-venus\': item[column.field] === \'female\' }" aria-hidden="true"></i></div>',
+UiBase.vue.component('grid-row-custom', {
+  template: '<div class="text-md-center"><i class="fa" :class="{\'fa-mars\': ' +
+    'item[column.field] === \'male\', \'fa-venus\': item[column.field] === ' +
+    '\'female\' }" aria-hidden="true"></i></div>',
   props: ['column', 'item']
-})
+});

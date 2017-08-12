@@ -5,56 +5,35 @@
       v-on:rowclick="onRowClick"
       :hover="true"
       :small="true"
-      :list="list"
+      :fetch="fetch"
       :columns="columns"></uib-grid>
   </div>
 </template>
 
 <script>
-const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue')
-const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue')
+require('./grid-row-custom.js');
 
-require('./grid-row-custom.js')
+const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
 
 export default {
   methods: {
-    fetch () {
-
-      let list = require('./data-list.json'); 
-
-      this.list = list; 
-
-      // Fake API call
-      /*new Promise((resolve, reject) => {
-        setTimeout(function () {
-          resolve(list); 
-        }, 500)
-      }).then((r) => {
-        this.list = r
-      })*/
-
-      this.$route.push('/somewhere-else');
-    },
-
     onRowClick (e, item) {
 
-      this.$route.push('/somewhere-else');
-      console.log('onRowClick', e, item); 
+      console.log('navigate to /somewhere-else');
+      // this.$route.push('/somewhere-else');
     }
   },
-  mounted () {
-    this.fetch()
-  },
+
   data () {
     return {
-      list: null,
       columns: [
         { title: 'Name', field: 'name' },
         { title: 'E-Mail', field: 'email' },
-        { title: 'Phone', field: 'phone' },
+        /* { title: 'Phone', field: 'phone' },
         { title: 'Company', field: 'company' },
         { title: 'Age', field: 'age' },
-        { title: 'Gender', field: 'gender' },
+        { title: 'Gender', field: 'gender', component: 'grid-row-custom' },
         { title: 'Balance', field: 'balance' },
         { title: 'Active', field: 'isActive' },
         {
@@ -62,11 +41,15 @@ export default {
           actions: [{
             icon: 'fa fa-remove',
             method: (e, item) => {
-              console.log('action method!', e, item); 
+              console.log('action method!', e, item);
             }
           }]
-        }
-      ]
+        }*/
+      ],
+      fetch: (args) => {
+
+        return Promise.resolve(require('./data-list1.json'));
+      }
     }
   },
   components: {

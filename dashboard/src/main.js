@@ -1,4 +1,5 @@
-import UiBase from 'vue-uibase'
+import UiBase from 'vue-uibase';
+
 // const UiBase = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase');
 
 // Install here your plugins
@@ -11,8 +12,7 @@ UiBase.router.addRoute([{
 }, {
   path: '/examples/details',
   component: () => import('./pages/examples/details.vue')
-}]
-)
+}]);
 
 UiBase.menu.addSitebarItem({
   title: 'Application',
@@ -30,6 +30,6 @@ UiBase.menu.addSitebarItem({
       path: '/examples/details'
     }]
   }]
-})
+});
 
-UiBase.initialize()
+UiBase.initialize();

@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import App from './components/app/app.vue'
 import RouterBuilder from './router-builder.js'
@@ -16,29 +15,25 @@ Vue.mixin({
   }
 })
 
-const bus = new Vue()
-window.$broadcast = function (name, data) {
-  bus.$emit(name, data)
-}
+class UiBase {
 
-window.$on = function (name, func) {
-  bus.$on(name, func)
-}
+  static get vue() {
+    return Vue;
+  }
 
-export default class UiBase {
-  static get router () {
+  static get router() {
     return (this._routerBuilder
       ? this._routerBuilder
       : this._routerBuilder = new RouterBuilder())
   }
 
-  static get menu () {
+  static get menu() {
     return this._menuBuilder
       ? this._menuBuilder
       : this._menuBuilder = new MenuBuilder()
   }
 
-  static initialize () {
+  static initialize() {
     window.base = new Vue({
       el: '#app',
       router: this.router.buildRouter(),
@@ -48,4 +43,19 @@ export default class UiBase {
       }
     })
   }
-};
+}
+
+// Expose to window
+window.uiBase = UiBase;
+
+// Global bus
+const bus = new Vue()
+window.$broadcast = function (name, data) {
+  bus.$emit(name, data)
+}
+
+window.$on = function (name, func) {
+  bus.$on(name, func)
+}
+
+export default UiBase;

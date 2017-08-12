@@ -1,6 +1,5 @@
 <template>
   <nav>
-    {{ total }}
     <ul class="pagination"
       :class="{
         'pagination-sm': small
@@ -21,8 +20,7 @@ export default {
   props: [
     'small',
     'subtitle',
-    'take',
-    'skip',
+    'current',
     'total'
   ]
 }
