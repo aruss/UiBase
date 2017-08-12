@@ -12,7 +12,7 @@
 
 <script>
 require('./grid-row-custom.js');
-
+const Lazy = require('lazy.js');
 const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue');
 const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
 
@@ -48,7 +48,22 @@ export default {
       ],
       fetch: (args) => {
 
-        return Promise.resolve(require('./data-list1.json'));
+        let list = require('./data-list1.json');
+        if (args.sort) {
+
+          let keys = Object.keys(args.sort);
+          if (keys.length > 0) {
+
+            let dir = args.sort[keys[0]];
+            if (dir != 0) {
+
+              list.items = Lazy(list.items).sortBy((c) => {
+                return c[keys[0]]
+              }, dir === -1).toArray();
+            }
+          }
+        }
+        return Promise.resolve(list);
       }
     }
   },

@@ -22,6 +22,13 @@
               </th>
             </tr>
           </thead>
+          <tbody>
+            <tr v-for="item in list.items" :key="item.key" v-on:click="rowClick($event, item)">
+              <td v-for="column in columns_" :key="column.key" :width="column.width" :align="column.align">
+                <component :is="column.component" :item="item" :column="column"></component>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
@@ -33,6 +40,7 @@
 
 const uibPanel = () => import('../panel/panel.vue');
 const uibPagination = () => import('../pagination/pagination.vue');
+const Lazy = require('lazy.js');
 
 require('./grid-header-default.js');
 require('./grid-row-default.js');
@@ -68,8 +76,6 @@ export default {
 
   created() {
 
-    console.log(this.fuck, this.$fuck, this._fuck, this.fuck$, this.fuck_)
-
     // compute columns
     for(let i = 0; i < this.columns.length; i++) {
 
@@ -85,9 +91,58 @@ export default {
       col.title = col.title || col.field;
       this.columns_.push(col);
     }
+
+    this.fetch_();
   },
 
   methods: {
+
+    args_() {
+
+      if (this.args && typeof this.args === 'function') {
+
+        // the provided method so it generates args on its own
+        return this.args(this.columns_);
+      }
+      else {
+
+        // use default logic to create args
+        let col = Lazy(this.columns_).find((x) => x.sort != 0);
+        let args = {};
+
+        if (col) {
+          console.log(col);
+          args.sort = {};
+          args.sort[col.field] = col.sort;
+        }
+
+        return Promise.resolve(args);
+      }
+    },
+
+    fetch_() {
+
+      if (this.fetch && typeof this.fetch === 'function') {
+
+        this.args_().then((args) => {
+
+          this.fetch(args).then((data) => {
+
+            this.list = data;
+          });
+        });
+      }
+      else {
+
+        // Return provided list or a default empy one
+        return Promise.resolve(this.list || {
+          total: 0,
+          take: 10,
+          skip: 0,
+          items: []
+        })
+      }
+    },
 
     sort(e, column) {
 
@@ -99,8 +154,15 @@ export default {
           col.sort = 0;
         }
       });
-    }
 
+      this.fetch_();
+    },
+
+    rowClick(e, item) {
+
+      console.log(this.id + '.rowClick', e, item);
+      this.$emit('rowclick', e, item);
+    }
   },
 
   components: {
