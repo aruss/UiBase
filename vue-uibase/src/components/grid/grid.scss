@@ -26,9 +26,12 @@
     tbody {
       tr {
 
+        cursor: pointer;
+
         &:hover {
           background-color: $lightdark;
         }
+
         td {
           white-space: nowrap;
 

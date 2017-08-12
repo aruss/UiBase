@@ -30,13 +30,13 @@ export default {
       columns: [
         { title: 'Name', field: 'name' },
         { title: 'E-Mail', field: 'email' },
-        /* { title: 'Phone', field: 'phone' },
+        { title: 'Phone', field: 'phone' },
         { title: 'Company', field: 'company' },
         { title: 'Age', field: 'age' },
         { title: 'Gender', field: 'gender', component: 'grid-row-custom' },
         { title: 'Balance', field: 'balance' },
         { title: 'Active', field: 'isActive' },
-        {
+        /* {
           component: 'grid-row-actions',
           actions: [{
             icon: 'fa fa-remove',
@@ -44,11 +44,15 @@ export default {
               console.log('action method!', e, item);
             }
           }]
-        }*/
+        } */
       ],
       fetch: (args) => {
 
-        let list = require('./data-list1.json');
+        console.log(args);
+
+        let list = require('./data-list.json');
+        let query = Lazy(list.items);
+
         if (args.sort) {
 
           let keys = Object.keys(args.sort);
@@ -57,12 +61,18 @@ export default {
             let dir = args.sort[keys[0]];
             if (dir != 0) {
 
-              list.items = Lazy(list.items).sortBy((c) => {
+              query = query.sortBy((c) => {
                 return c[keys[0]]
-              }, dir === -1).toArray();
+              }, dir === -1);
             }
           }
         }
+
+        list.skip = args.skip;
+        list.take = args.take;
+        list.sort = args.sort;
+        list.items = query.skip(args.skip).take(args.take).toArray();
+
         return Promise.resolve(list);
       }
     }

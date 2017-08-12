@@ -31,7 +31,17 @@
           </tbody>
         </table>
       </div>
+      <div class="row" v-if="list">
+        <div class="col-sm-12 col-md-12">
 
+          <uib-pagination
+            :take="list.take"
+            :skip="list.skip"
+            :total="list.total"
+            v-on:change="pager"></uib-pagination>
+
+        </div>
+      </div>
     </uib-panel>
   </uib-panel>
 </template>
@@ -70,26 +80,34 @@ export default {
   data() {
     return {
       columns_: [],
-      list: {}
+      list: {},
+      query: {
+        take: 50,
+        skip: 0,
+        sort: {
+          name: 1
+        }
+      }
     }
   },
 
   created() {
 
+    // parse query string
+
     // compute columns
     for(let i = 0; i < this.columns.length; i++) {
 
-      let col = Object.assign({
+      let column = this.columns[i];
+      this.columns_.push(Object.assign({
         key: i,
         component: 'grid-row-default',
         componentHead: 'grid-header-default',
         width: '*',
         align: 'left', // left | center | right
-        sort: 0 // -1|0|1
-      }, this.columns[i]);
-
-      col.title = col.title || col.field;
-      this.columns_.push(col);
+        title: column.title || column.field,
+        sort: this.query.sort[column.field] || 0 // -1|0|1
+      }, column));
     }
 
     this.fetch_();
@@ -101,22 +119,11 @@ export default {
 
       if (this.args && typeof this.args === 'function') {
 
-        // the provided method so it generates args on its own
-        return this.args(this.columns_);
+        return this.args(this.query);
       }
       else {
 
-        // use default logic to create args
-        let col = Lazy(this.columns_).find((x) => x.sort != 0);
-        let args = {};
-
-        if (col) {
-          console.log(col);
-          args.sort = {};
-          args.sort[col.field] = col.sort;
-        }
-
-        return Promise.resolve(args);
+        return Promise.resolve(this.query);
       }
     },
 
@@ -148,9 +155,14 @@ export default {
 
       this.columns_.forEach((col) => {
         if (col === column) {
-          column.sort = column.sort === 0 ? 1 : column.sort === 1 ? -1 : 0;
+
+          this.query.sort = {};
+          this.query.sort[column.field] =
+            column.sort =
+            column.sort === 1 ? -1 : 1;
         }
         else {
+
           col.sort = 0;
         }
       });
@@ -160,8 +172,13 @@ export default {
 
     rowClick(e, item) {
 
-      console.log(this.id + '.rowClick', e, item);
       this.$emit('rowclick', e, item);
+    },
+
+    pager(args) {
+
+      Object.assign(this.query, args);
+      this.fetch_();
     }
   },
 
