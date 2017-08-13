@@ -12,8 +12,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "lintfix": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs --fix"
   },
-  "dependencies": {},
+  "dependencies": {
+
+  },
   "devDependencies": {
+    "uglify-es": "github:mishoo/UglifyJS2#harmony",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -76,10 +79,11 @@
     "shelljs": "^0.7.8",
     "sinon": "^3.0.0",
     "sinon-chai": "^2.12.0",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
     "vue": "^2.4.2",
-    "vue-router": "^2.7.0",
     "vue-loader": "^13.0.3",
+    "vue-router": "^2.7.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.4.1",

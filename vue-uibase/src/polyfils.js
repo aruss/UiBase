@@ -1,3 +1,5 @@
+// Do we actually need this shit since we use webpack?
+
 if (!Array.isArray) {
   Array.isArray = function (vArg) {
     return Object.prototype.toString.call(vArg) === '[object Array]'

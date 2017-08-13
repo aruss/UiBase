@@ -52,12 +52,12 @@ const uibPanel = () => import('../panel/panel.vue');
 const uibPagination = () => import('../pagination/pagination.vue');
 const Lazy = require('lazy.js');
 
-require('./grid-header-default.js');
 require('./grid-row-default.js');
 require('./grid-row-checkbox.js');
 require('./grid-row-link.js');
 require('./grid-row-image.js');
 require('./grid-row-actions.js');
+require('./grid-header-default.js');
 
 export default {
   props: [

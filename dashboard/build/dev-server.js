@@ -6,6 +6,7 @@ if (!process.env.NODE_ENV) {
 }
 
 var opn = require('opn')
+var fs = require('fs');
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
@@ -64,6 +65,13 @@ app.use(hotMiddleware)
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+
+// add api routes
+var router = express.Router();
+router.get('/', function (req, res) {
+  res.json({ message: 'hooray! welcome to our api!' });
+});
+app.use('/api', router);
 
 var uri = 'http://localhost:' + port
 

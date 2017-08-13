@@ -14,6 +14,7 @@
 
 require('./grid-row-custom.js');
 
+const HttpClient = require('vue-uibase/src/http-client');
 const Lazy = require('lazy.js');
 const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue');
 const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
@@ -34,13 +35,13 @@ export default {
     return {
       columns: [
         { title: 'Name', field: 'name' },
-        { title: 'E-Mail', field: 'email' },
+        //{ title: 'E-Mail', field: 'email' },
         { title: 'Phone', field: 'phone' },
         { title: 'Company', field: 'company' },
         { title: 'Age', field: 'age' },
         { title: 'Gender', field: 'gender', component: 'grid-row-custom' },
         { title: 'Balance', field: 'balance' },
-        { title: 'Active', field: 'isActive' },
+        //{ title: 'Active', field: 'isActive' },
         /* {
           component: 'grid-row-actions',
           actions: [{
@@ -52,6 +53,13 @@ export default {
         } */
       ],
       fetch: (args) => {
+
+        const api = new HttpClient();
+        api.get('/foo', args).then((r) => {
+            console.log(r);
+        }).catch((r) => {
+            console.log(r)
+        });
 
         let list = require('./data-list.json');
         let query = Lazy(list.items);
@@ -76,7 +84,7 @@ export default {
           take: args.take,
           sort: args.sort,
           total: list.total,
-          items: query.skip(args.skip).take(args.take).toArray()
+          items: query.skip(args.skip).take(10 || args.take).toArray()
         });
       }
     }

@@ -8,7 +8,7 @@ Vue.component('grid-header-default', {
   data() { return { clss: "" }; },
   methods: {
     click(e, column) {
-      this.clss = column.sort === 0 ? 'asc' : column.sort === 1 ? 'desc' : '';
+      this.clss = column.sort === 1 ? 'asc' : column.sort === -1 ? 'desc' : '';
       this.$emit('sort', e, column);
     }
   }
