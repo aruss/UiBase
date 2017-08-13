@@ -26,13 +26,6 @@ class UiBase {
 
   static initialize() {
 
-    const fuck = require('./pages/examples/allinone.vue');
-    this.router.addRoute([{
-      path: '/examples/allinone',
-      component: fuck
-    }]);
-
-
     window.base = new Vue({
       el: '#app',
       router: this.router.buildRouter(),
@@ -46,6 +39,12 @@ class UiBase {
 
 // Expose to window
 window.uiBase = UiBase;
+
+// Add dev page
+UiBase.router.addRoute([{
+  path: '/examples/allinone',
+  component: () => import('./pages/examples/allinone.vue')
+}]);
 
 // Global bus
 const bus = new Vue()
