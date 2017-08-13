@@ -1,19 +1,10 @@
-import Vue from 'vue'
-import App from './components/app/app.vue'
-import RouterBuilder from './router-builder.js'
-import MenuBuilder from './menu-builder.js'
+import Vue from 'vue';
+import App from './components/app/app.vue';
+import RouterBuilder from './router-builder.js';
+import MenuBuilder from './menu-builder.js';
 
-Vue.config.productionTip = false
-Vue.config.devtools = true
-
-// Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
-Vue.mixin({
-  methods: {
-    $broadcast: (name, data) => {
-      window.$broadcast(name, data)
-    }
-  }
-})
+Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 class UiBase {
 
@@ -34,6 +25,14 @@ class UiBase {
   }
 
   static initialize() {
+
+    const fuck = require('./pages/examples/allinone.vue');
+    this.router.addRoute([{
+      path: '/examples/allinone',
+      component: fuck
+    }]);
+
+
     window.base = new Vue({
       el: '#app',
       router: this.router.buildRouter(),
@@ -41,7 +40,7 @@ class UiBase {
       components: {
         App
       }
-    })
+    });
   }
 }
 
@@ -51,11 +50,23 @@ window.uiBase = UiBase;
 // Global bus
 const bus = new Vue()
 window.$broadcast = function (name, data) {
-  bus.$emit(name, data)
-}
+
+  bus.$emit(name, data);
+};
 
 window.$on = function (name, func) {
-  bus.$on(name, func)
-}
+
+  bus.$on(name, func);
+};
+
+// Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
+Vue.mixin({
+  methods: {
+    $broadcast(name, data) {
+
+      window.$broadcast(name, data);
+    }
+  }
+});
 
 export default UiBase;

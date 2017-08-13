@@ -11,7 +11,9 @@
 </template>
 
 <script>
+
 require('./grid-row-custom.js');
+
 const Lazy = require('lazy.js');
 const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue');
 const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
@@ -19,6 +21,9 @@ const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-u
 export default {
   methods: {
     onRowClick (e, item) {
+
+      console.log(this.$routerX)
+      console.log(this.$router);
 
       console.log('navigate to /somewhere-else');
       // this.$route.push('/somewhere-else');
@@ -48,8 +53,6 @@ export default {
       ],
       fetch: (args) => {
 
-        console.log(args);
-
         let list = require('./data-list.json');
         let query = Lazy(list.items);
 
@@ -68,12 +71,13 @@ export default {
           }
         }
 
-        list.skip = args.skip;
-        list.take = args.take;
-        list.sort = args.sort;
-        list.items = query.skip(args.skip).take(args.take).toArray();
-
-        return Promise.resolve(list);
+        return Promise.resolve({
+          skip: args.skip,
+          take: args.take,
+          sort: args.sort,
+          total: list.total,
+          items: query.skip(args.skip).take(args.take).toArray()
+        });
       }
     }
   },

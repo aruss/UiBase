@@ -1,5 +1,4 @@
 import UiBase from 'vue-uibase';
-
 // const UiBase = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase');
 
 // Install here your plugins
