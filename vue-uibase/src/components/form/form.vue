@@ -38,6 +38,6 @@ export default {
 </script>
 
 
-<style lang="scss">
-@import "./grid.scss";
+<style lang="less">
+@import "./form.less";
 </style>

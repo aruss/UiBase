@@ -3,19 +3,22 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-function routerBuilder () {
+function RouterBuilder(uiBase) {
 
-  let _routes = {};
+  let routes = {};
 
   this.buildRouter = () => {
 
     let router = new VueRouter({
-      routes: Object.values(_routes)
+      routes: Object.values(routes)
     });
 
     router.afterEach((to, from) => {
 
-      window.$broadcast('routechanged', { to: to, from: from });
+      uiBase.broadcast('routechanged', {
+        to: to,
+        from: from
+      });
     });
 
     return router;
@@ -44,9 +47,9 @@ function routerBuilder () {
       console.error(`Route with path ${route.path} is already defined`);
     } else {
 
-      _routes[route.path] = route;
+      routes[route.path] = route;
     }
   }
 };
 
-export default routerBuilder;
+export default RouterBuilder;

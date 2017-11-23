@@ -1,6 +1,6 @@
 const Utils = require('./utils');
 
-function httpClient(args) {
+function HttpClient(args) {
 
   const options = Object.assign({
     basePath: '',
@@ -84,4 +84,4 @@ function httpClient(args) {
   }
 };
 
-module.exports = httpClient;
+module.exports = HttpClient;

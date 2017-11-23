@@ -117,7 +117,7 @@ export default {
 
 <style lang="scss">
 
-@import "../app/scss/variables.scss";
+@import "../app/less/variables.less";
 
 .pager {
 

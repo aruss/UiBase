@@ -9,9 +9,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 
-@import "../app/scss/variables.scss";
+@import "../app/less/variables.less";
 
 .uib-portlet {
   padding: 20px;
@@ -19,7 +19,7 @@ export default {
   border-radius: 5px;
   margin-bottom: 20px;
   background-clip: padding-box;
-  background-color: $white;
+  background-color: @white;
 }
 
 </style>

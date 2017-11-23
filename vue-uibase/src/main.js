@@ -6,66 +6,104 @@ import MenuBuilder from './menu-builder.js';
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
-class UiBase {
+function UiBaseCore() {
 
-  static get vue() {
-    return Vue;
+  this.global = {
+    isAsideFolded: false,
+    isHeaderFixed: true
+  };
+  this.vue;
+
+  // router
+  let router = new RouterBuilder(this);
+  this.addRoute = (val) => {
+
+    router.addRoute(val);
+  };
+
+  // sidebar
+  let asideMenu = new MenuBuilder(this);
+  this.aside = {
+    addItems: asideMenu.addItems,
+    getTree: asideMenu.getTree
+  };
+
+  // header
+  let headerComponents = [];
+  this.header = {
+    addComponent: (component) => {
+
+      headerComponents.push(component);
+    },
+    getComponents: () => {
+
+      return headerComponents;
+    }
+  };
+
+  // bus
+  let bus = new Vue();
+  this.broadcast = (name, data) => {
+
+    console.log("boradcasting", name, data);
+    bus.$emit(name, data);
   }
 
-  static get router() {
-    return (this._routerBuilder
-      ? this._routerBuilder
-      : this._routerBuilder = new RouterBuilder())
-  }
+  this.on = function (name, func) {
 
-  static get menu() {
-    return this._menuBuilder
-      ? this._menuBuilder
-      : this._menuBuilder = new MenuBuilder()
-  }
+    bus.$on(name, func);
+  };
 
-  static initialize() {
+  this.initialize = () => {
 
-    window.base = new Vue({
+    this.vue = new Vue({
       el: '#app',
-      router: this.router.buildRouter(),
+      router: router.buildRouter(),
       template: '<App/>',
       components: {
         App
       }
     });
+
+    // Add dev page
+    uiBase.addRoute([{
+      path: '/examples/allinone',
+      component: () => import ('./pages/examples/allinone.vue')
+    }]);
+
+    uiBase.header.addComponent({
+      key: 'aside-toggle',
+      component: () => import ('./components/app/header-toggle.vue'),
+      data: {
+        event: 'aside-toggle'
+      }
+    });
+
+    // Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
+    Vue.mixin({
+      methods: {
+        $broadcast(name, data) {
+
+          uiBase.broadcast(name, data);
+        }
+      }
+    });
+
   }
 }
 
 // Expose to window
-window.uiBase = UiBase;
+const uiBase = window.UiBase = new UiBaseCore();
 
-// Add dev page
-UiBase.router.addRoute([{
-  path: '/examples/allinone',
-  component: () => import('./pages/examples/allinone.vue')
-}]);
+export default uiBase;
 
-// Global bus
-const bus = new Vue()
-window.$broadcast = function (name, data) {
+/*
+  // Adds a menu entry to sidebar
+  UiBase.aside.addItem();
 
-  bus.$emit(name, data);
-};
+  // Adds a extra component to sidebar
+  UiBase.aside.addComponent();
 
-window.$on = function (name, func) {
-
-  bus.$on(name, func);
-};
-
-// Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
-Vue.mixin({
-  methods: {
-    $broadcast(name, data) {
-
-      window.$broadcast(name, data);
-    }
-  }
-});
-
-export default UiBase;
+  // Adds a header component
+  UiBase.header.addComponent();
+*/

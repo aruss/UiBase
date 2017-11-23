@@ -1,7 +1,7 @@
 <template>
   <div class="page-header">
     <b>{{ title }}</b>
-    <p>{{ subtitle }}</p>
+    <p>{{ subtitle }}</p>/*
   </div>
 </template>
 
@@ -14,12 +14,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 
-@import "../app/scss/variables.scss";
+@import "../app/less/variables.less";
 
 .page-header {
-  padding-bottom: $gutter;
+  /*padding-bottom: $gutter;
 
   b {
     font-size: 1.2em;
@@ -33,7 +33,7 @@ export default {
     margin-top: $gutter / 2;
     line-height: 1em;
     margin-bottom: 0;
-  }
+  }*/
 }
 
 </style>

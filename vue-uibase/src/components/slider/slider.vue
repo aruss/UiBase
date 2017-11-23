@@ -37,26 +37,26 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 
-@import "../app/scss/variables.scss";
+@import "../app/less/variables.less";
 
 /* Right sidebar */
 .uib-slider {
   -moz-transition: all 200ms ease-out;
   -webkit-transition: all 200ms ease-out;
-  background-color: $white;
+  background-color: @white;
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
   display: block;
   float: left;
-  height: $height;
+  height: @height;
   overflow-y: auto;
   position: fixed;
   transition: all 200ms ease-out;
   float: right !important;
   top: 70px;
   font-size: 0.9rem;
-  background: $white !important;
+  background: @white !important;
   z-index: 99 !important;
 
   width: 60%;
@@ -67,7 +67,7 @@ export default {
   }
 
   h4 {
-    border-bottom: 1px solid $light;
+    border-bottom: 1px solid @light;
     padding-bottom: 10px;
     font-size: 1.2rem;
   }

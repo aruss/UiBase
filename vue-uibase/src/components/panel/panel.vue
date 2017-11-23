@@ -15,17 +15,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 
-@import "../app/scss/variables.scss";
+@import "../app/less/variables.less";
 
 .panel {
-  padding: $gutter;
-  margin-bottom: $gutter;
+  padding: @gutter;
+  margin-bottom: @gutter;
   border: 1px solid rgba(54, 64, 74, 0.05);
   border-radius: 5px;
   background-clip: padding-box;
-  background-color: $white;
+  background-color: @white;
 
   b {
     text-transform: uppercase;
@@ -37,9 +37,9 @@ export default {
   }
 
   p {
-    margin-top: $gutter / 2;
+    margin-top: @gutter / 2;
     line-height: 1em;
-    margin-bottom: $gutter;
+    margin-bottom: @gutter;
   }
 }
 

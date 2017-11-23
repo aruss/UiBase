@@ -4,14 +4,14 @@ Vue.component('grid-row-link', {
   template: '<router-link to="/examples/details">{{ item[column.field] }}</router-link>',
   props: ['column', 'item'],
   computed: {
-    rowValue () {
+    rowValue() {
       console.log(this.item[this.column.field]);
       console.log(this.item[this.column.idField]);
       return this.item[this.column.field];
     },
-    linkTo () {
+    linkTo() {
 
-      return '/foo/bar'
+      return '/foo/bar';
     }
   }
-})
+});

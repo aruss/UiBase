@@ -1,39 +1,55 @@
+function MenuBuilder() {
 
-function menuBuilder () {
-  function tree (items) {
-    let cats = {}
+  // Compiles a menu model from individual menu
+  // registrations into a tree structure
+  let tree = null;
+  this.getTree = () => {
+
+    if (tree) {
+
+      return tree;
+    }
+
+    let cats = {};
     items.forEach((item) => {
+
       if (!cats[item.title]) {
-        cats[item.title] = item
+
+        cats[item.title] = item;
       } else {
-        let cat = cats[item.title]
+
+        let cat = cats[item.title];
+
         if (item.items) {
-          cat.items = tree((cat.items || []).concat(item.items))
+
+          cat.items = tree((cat.items || []).concat(item.items));
         }
       }
-    })
+    });
 
-    return Object.values(cats)
-  }
+    tree = Object.values(cats);
+    return tree;
+  };
 
-  function addItems (list, val) {
+  this.getItems = () => {
+
+    return items;
+  };
+
+  // Adds a menu item with all its children
+  let items = [];
+  this.addItems = (val) => {
+
     if (Array.isArray(val)) {
-      list = list.concat(val)
+
+      items = items.concat(val);
     } else {
-      list.push(val)
+
+      items.push(val);
     }
-  }
 
-  // Sidebar
-  let _sidebarItems = []
-  this.getSitebarItems = () => {
-    return tree(_sidebarItems)
+    return this;
   }
+}
 
-  this.addSitebarItem = (val) => {
-    addItems(_sidebarItems, val)
-    return this
-  }
-};
-
-export default menuBuilder
+export default MenuBuilder;
