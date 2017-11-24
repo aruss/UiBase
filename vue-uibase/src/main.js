@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './components/app/app.vue';
 import RouterBuilder from './router-builder.js';
-import MenuBuilder from './menu-builder.js';
+import ListBuilder from './list-builder.js';
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
@@ -22,23 +22,15 @@ function UiBaseCore() {
   };
 
   // sidebar
-  let asideMenu = new MenuBuilder(this);
   this.aside = {
-    addItems: asideMenu.addItems,
-    getTree: asideMenu.getTree
+    menu: new ListBuilder(this),
+    components: new ListBuilder(this)
   };
 
   // header
-  let headerComponents = [];
   this.header = {
-    addComponent: (component) => {
-
-      headerComponents.push(component);
-    },
-    getComponents: () => {
-
-      return headerComponents;
-    }
+    menu: new ListBuilder(this),
+    components: new ListBuilder(this)
   };
 
   // bus
@@ -64,46 +56,66 @@ function UiBaseCore() {
         App
       }
     });
-
-    // Add dev page
-    uiBase.addRoute([{
-      path: '/examples/allinone',
-      component: () => import ('./pages/examples/allinone.vue')
-    }]);
-
-    uiBase.header.addComponent({
-      key: 'aside-toggle',
-      component: () => import ('./components/app/header-toggle.vue'),
-      data: {
-        event: 'aside-toggle'
-      }
-    });
-
-    // Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
-    Vue.mixin({
-      methods: {
-        $broadcast(name, data) {
-
-          uiBase.broadcast(name, data);
-        }
-      }
-    });
-
   }
 }
 
 // Expose to window
 const uiBase = window.UiBase = new UiBaseCore();
 
+// Shortcut for calling <a v-on:click.stop="$broadcast('funky')">
+Vue.mixin({
+  methods: {
+    $broadcast(name, data) {
+
+      uiBase.broadcast(name, data);
+    }
+  }
+});
+
+// Add dev page
+uiBase.addRoute([{
+  path: '/examples/allinone',
+  component: () => import ('./pages/examples/allinone.vue')
+}]);
+
+uiBase.aside.components.addItems({
+  id: 'aside-menu',
+  component: () => import ('./components/app/aside-menu.vue')
+});
+
+uiBase.aside.menu.addItems({
+  title: 'Application',
+  items: [{
+    id: 'examples',
+    title: 'Examples',
+    icon: 'glyphicon glyphicon-stats icon text-primary-dker',
+    items: [{
+      id: 'all-in-one',
+      title: 'All in one',
+      path: '/examples/allinone'
+    }]
+  }]
+});
+
+/*
+uiBase.header.addComponent({
+  key: 'aside-toggle',
+  component: () => import ('./components/app/header-toggle.vue'),
+  data: {
+    event: 'aside-toggle'
+  }
+});
+*/
+
 export default uiBase;
 
 /*
   // Adds a menu entry to sidebar
-  UiBase.aside.addItem();
+  UiBase.aside.menu.addItem();
 
   // Adds a extra component to sidebar
-  UiBase.aside.addComponent();
+  UiBase.aside.components.add();
 
   // Adds a header component
-  UiBase.header.addComponent();
+  UiBase.header.components.add();
 */

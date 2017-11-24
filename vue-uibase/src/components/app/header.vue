@@ -21,24 +21,11 @@
       <!-- navbar collapse -->
       <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
 
-
-        <div v-for="item in components" :key="item.key">
-          <component :is="item.component" :data="item.data"></component>
+        <div v-for="item in components" :key="item.id">
+          <component :is="item.component" :data="item.options"></component>
         </div>
 
-        <!-- buttons -->
-        <div class="nav navbar-nav hidden-xs">
 
-
-          <a href="#" class="btn no-shadow navbar-btn active" ui-toggle-class="app-aside-folded" target=".app">
-            <i class="fa fa-dedent fa-fw text"></i>
-            <i class="fa fa-indent fa-fw text-active"></i>
-          </a>
-          <a href="#" class="btn no-shadow navbar-btn" ui-toggle-class="show" target="#aside-user">
-            <i class="icon-user fa-fw"></i>
-          </a>
-        </div>
-        <!-- / buttons -->
 
         <!-- link and dropdown -->
         <ul class="nav navbar-nav hidden-sm">
@@ -272,17 +259,20 @@
 
 <script>
 import UiBase from '../../main';
+
 export default {
 
   mounted() {
 
-    this.components = UiBase.header.getComponents();
+    this.components = UiBase.header.components.getItems();
+    // this.menu = UiBase.header.menu.getTree();
   },
   data () {
 
     return {
       global: UiBase.global,
-      components: []
+      components: [],
+      menu: []
     }
   }
 }

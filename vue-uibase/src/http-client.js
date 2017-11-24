@@ -82,6 +82,6 @@ function HttpClient(args) {
 
     return this.request('DELETE', uri, content ? JSON.stringify(content) : '');
   }
-};
+}
 
 module.exports = HttpClient;

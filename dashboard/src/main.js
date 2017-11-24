@@ -13,7 +13,7 @@ UiBase.addRoute([{
   component: () => import('./pages/examples/details.vue')
 }*/]);
 
-UiBase.aside.addItems({
+UiBase.aside.menu.addItems({
   title: 'Application',
   items: [{
     title: 'Examples',

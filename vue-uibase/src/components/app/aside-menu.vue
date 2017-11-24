@@ -2,7 +2,6 @@
   <div class="navi-wrap">
     <nav ui-nav="" class="navi clearfix">
       <ul class="nav">
-
         <li v-for="item in items" :key="item.key"
             :class="{
               'hidden-folded padder m-t m-b-sm text-muted text-xs': !item.items,
@@ -26,9 +25,10 @@
               </a>
               <ul class="nav nav-sub dk">
                 <li class="nav-sub-header" v-for="item2 in item.items">
-                  <a href="">
-                    <span>Dashboard</span>
-                  </a>
+                  <router-link :key="item2.key" :to="item2.path">
+                    <i v-if="item2.icon" :class="item2.icon"></i>
+                    <span>{{ item2.title }}</span>
+                  </router-link>
                 </li>
               </ul>
             </template>
@@ -46,7 +46,7 @@ export default {
   mounted() {
 
     // Transform model to view model
-    let items = UiBase.aside.getTree();
+    let items = UiBase.aside.menu.getItems();
     let vm = [];
     let itemsByPath = {};
 
