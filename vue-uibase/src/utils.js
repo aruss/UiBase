@@ -44,5 +44,6 @@ exports.createId = function(source) {
   return source
     .replace(/[^a-zA-Z0-9]/g,'_')
     .replace(/__+/g, '_')
-    .replace(/_+$/, '');
+    .replace(/_+$/, '')
+    .toLowerCase();
 }

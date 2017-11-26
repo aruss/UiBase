@@ -1,8 +1,8 @@
 <template>
   <aside id="aside" class="app-aside hidden-xs bg-dark">
       <div class="aside-wrap">
-          <div v-for="item in components" :key="item.id">
-            <component :is="item.component" :data="item.data"></component>
+          <div v-for="item in items" :key="item.name">
+            <component :is="item.component" :item="item"></component>
           </div>
       </div>
       <div class="app-aside-footer">
@@ -24,7 +24,7 @@ import uibAsideMenu from './aside-menu.vue';
 export default {
   mounted () {
 
-    this.components = UiBase.aside.components.getItems();
+    this.items = UiBase.aside.getItems();
   },
   components: {
     uibAsideMenu
@@ -33,7 +33,7 @@ export default {
 
     return {
       global: UiBase.global,
-      components: []
+      items: []
     }
   }
 }

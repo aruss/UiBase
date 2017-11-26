@@ -1,4 +1,4 @@
-// Borrowed from https://github.com/hapijs/hoek/blob/master/lib/index.js
+// Borrowed from https://github.com/hapijs/topo/blob/master/API.md
 
 const Utils = require('./utils');
 
@@ -9,23 +9,6 @@ exports = module.exports = internals.Topo = function () {
   this._items = [];
   this.nodes = [];
 };
-
-
-exports.sort = function (items) {
-
-  const topo = new Topo();
-  items.forEach((item, i) => {
-
-    const options = record.before || record.after || record.group ? {
-      before: record.before,
-      after: record.after,
-      group: record.group
-    } : null;
-    topo.add(item, options);
-  });
-
-  return topo.nodes;
-}
 
 internals.Topo.prototype.add = function (nodes, options) {
 

@@ -6,12 +6,10 @@
     }">
     <uib-aside></uib-aside>
     <uib-header></uib-header>
-    <div class="content-page">
-      <div class="content">
-        <router-view></router-view>
-      </div>
-      <uib-footer></uib-footer>
+    <div id="content" class="app-content" role="main">
+      <router-view></router-view>
     </div>
+    <uib-footer></uib-footer>
   </div>
 </template>
 

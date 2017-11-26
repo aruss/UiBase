@@ -3,32 +3,8 @@ const Topo = require('./topo');
 
 function ListBuilder(groupKey) {
 
-  groupKey = groupKey = 'id';
-
   let _sorted = null;
   let _items = [];
-
-  let _sort = (source) => {
-
-    let cats = {};
-    source.forEach((item) => {
-
-      if (!cats[item[groupKey]]) {
-
-        cats[item[groupKey]] = item;
-      } else {
-
-        let cat = cats[item[groupKey]];
-
-        if (item.items) {
-
-          cat.items = _sort((cat.items || []).concat(item.items));
-        }
-      }
-    });
-
-    return Object.values(cats);
-  }
 
   this.getItems = () => {
 
@@ -37,23 +13,49 @@ function ListBuilder(groupKey) {
       return _sorted;
     }
 
-    _sorted = _sort(_items);
+    const topo = new Topo();
+    _items.forEach((item, i) => {
+
+      const options = item.before || item.after || item.id ? {
+        before: item.before,
+        after: item.after,
+        group: item.id
+      } : null;
+      topo.add(item, options);
+    });
+
+    _sorted = topo.nodes;
     return _sorted;
   };
 
-  // Adds a menu item with all its children
+  this.addItems = (items) => {
 
-  this.addItem = (val) => {
-
-    _items.push(val);
-
+    items.forEach(this.addItem);
     return this;
   }
 
-  this.addItems = (val) => {
+  this.addItem = (item) => {
 
-    _items = _items.concat(val);
+    _items.push(item);
+    return this;
   }
 }
 
 export default ListBuilder;
+
+
+/*
+
+Component defenition
+
+{
+  // unique identifier for the component
+  id: 'aside-menu',
+  // method, that will load the component
+  component: () => import('./components/app/aside-menu.vue'),
+  // optional component options, depends on the component
+  options: {
+
+  }
+}
+*/

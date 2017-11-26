@@ -1,12 +1,16 @@
 <template>
-  <div class="container page">
+  <div class="app-content-body ">
     <uib-page-header title="Foos" subtitle="Here some kind of explanation what this hack is all about"></uib-page-header>
-    <uib-grid
-      v-on:rowclick="onRowClick"
-      :hover="true"
-      :small="true"
-      :fetch="fetch"
-      :columns="columns"></uib-grid>
+    <div class="wrapper-md">
+
+      <uib-grid
+        v-on:rowclick="onRowClick"
+        :hover="true"
+        :small="true"
+        :fetch="fetch"
+        :columns="columns">
+      </uib-grid>
+    </div>
   </div>
 </template>
 
@@ -17,7 +21,7 @@ require('./grid-row-custom.js');
 const HttpClient = require('vue-uibase/src/http-client');
 const Lazy = require('lazy.js');
 const uibGrid = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/grid/grid.vue');
-const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page-header.vue');
 
 export default {
   methods: {

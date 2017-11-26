@@ -5,12 +5,12 @@ Vue.use(VueRouter);
 
 function RouterBuilder(uiBase) {
 
-  let routes = {};
+  let _routes = {};
 
   this.buildRouter = () => {
 
     let router = new VueRouter({
-      routes: Object.values(routes)
+      routes: Object.values(_routes)
     });
 
     router.afterEach((to, from) => {
@@ -24,30 +24,23 @@ function RouterBuilder(uiBase) {
     return router;
   };
 
-  this.addRoute = (val) => {
+  this.addRoutes = (routes) => {
 
-    if (Array.isArray(val)) {
-
-      val.forEach(addRoute);
-    } else {
-
-      addRoute(val);
-    }
-
+    routes.forEach(this.addRoute);
     return this;
   };
 
-  function addRoute(route) {
+  this.addRoute = (route) => {
     // TODO: do object validation
     // TODO: check duplicate routes
 
-    if (addRoute[route.path]) {
+    if (_routes[route.path]) {
 
       // TODO: prevent webpack from removing the console.log statement
       console.error(`Route with path ${route.path} is already defined`);
     } else {
 
-      routes[route.path] = route;
+      _routes[route.path] = route;
     }
   }
 };

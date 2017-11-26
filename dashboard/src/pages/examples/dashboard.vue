@@ -1,12 +1,14 @@
 <template>
-  <div class="container page">
-    <uib-page-header title="Dashboard"></uib-page-header>
-
+  <div class="app-content-body ">
+    <uib-page-header title="Dashboard" subtitle="foo bar lorem ipsum"></uib-page-header>
+    <div class="wrapper-md">
+      test
+    </div>
   </div>
 </template>
 
 <script>
-const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue')
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page-header.vue');
 
 export default {
   name: 'dashboard',

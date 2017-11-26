@@ -1,33 +1,19 @@
 <template>
-  <div class="container page">
-    <uib-page-header title="Client" subtitle="Some subtitle what ever it means"></uib-page-header>
+  <div class="app-content-body ">
+    <uib-page-header title="Dashboard" subtitle="foo bar lorem ipsum"></uib-page-header>
+    <div class="wrapper-md">
 
-    <uib-panel>
-      hier details about clients yoo!
-    </uib-panel>
+      <uib-panel>
+        hier details about clients yoo!
+      </uib-panel>
 
-
-    <div class="row">
-      <div class="col-md-6 col-lg-6 col-xl-3">
-        <uib-panel>1</uib-panel>
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-3">
-        <uib-panel>2</uib-panel>
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-3">
-        <uib-panel>3</uib-panel>
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-3">
-        <uib-panel>4</uib-panel>
-      </div>
     </div>
   </div>
-
 </template>
 
 <script>
-const uibPanel = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/panel/panel.vue')
-const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page/header.vue')
+const uibPanel = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/panel.vue');
+const uibPageHeader = () => import(/* webpackChunkName: "group-uibase" */ 'vue-uibase/src/components/page-header.vue');
 
 export default {
   data () {

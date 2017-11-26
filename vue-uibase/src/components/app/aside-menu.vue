@@ -1,6 +1,7 @@
 <template>
   <div class="navi-wrap">
     <nav ui-nav="" class="navi clearfix">
+
       <ul class="nav">
         <li v-for="item in items" :key="item.key"
             :class="{
@@ -25,9 +26,9 @@
               </a>
               <ul class="nav nav-sub dk">
                 <li class="nav-sub-header" v-for="item2 in item.items">
-                  <router-link :key="item2.key" :to="item2.path">
-                    <i v-if="item2.icon" :class="item2.icon"></i>
-                    <span>{{ item2.title }}</span>
+                  <router-link :key="item2.name" :to="item2.options.path">
+                    <i v-if="item2.options.icon" :class="item2.options.icon"></i>
+                    <span>{{ item2.options.title }}</span>
                   </router-link>
                 </li>
               </ul>
@@ -39,14 +40,25 @@
 </template>
 
 <script>
+
+/*
+  Main menu component, that displays menu items as a tree
+
+  Options:
+    - group: Displays menu items only for specific group
+        default: null
+*/
+
 import UiBase from '../../main'
 
 export default {
 
+  props: ['item'],
+
   mounted() {
 
     // Transform model to view model
-    let items = UiBase.aside.menu.getItems();
+    let items = this.item.items;
     let vm = [];
     let itemsByPath = {};
 
@@ -56,7 +68,7 @@ export default {
 
       vm.push({
         key: i,
-        title: item.title,
+        title: item.options ? item.options.title || item.name : item.name,
         isGroup: true,
         isActive: false
       });
@@ -67,8 +79,8 @@ export default {
 
         vm.push({
           key: j,
-          title: item2.title,
-          icon: item2.icon,
+          title: item2.options ? item2.options.title || item2.name : item2.name,
+          icon: item2.options ? item2.options.icon : null,
           items: item2.items,
           isGroup: false,
           isActive: false
@@ -101,6 +113,7 @@ export default {
       setItem(this.$route.path);
     }
   },
+
   methods: {
     toggleItem(item, e) {
 
@@ -119,6 +132,7 @@ export default {
       this.itemActive.isActive = true;
     }
   },
+
   data() {
 
     return {
