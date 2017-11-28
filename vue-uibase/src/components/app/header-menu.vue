@@ -13,7 +13,10 @@
       <ul class="nav navbar-nav" v-if="item.items" :item-name="item.name">
         <li class="dropdown">
           <!-- default component -->
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle" v-if="!item.component">
+          <a href="#"
+             data-toggle="dropdown"
+             class="dropdown-toggle"
+             v-if="!item.component">
             <span>{{ item.options.title }}</span>
             <span class="caret"></span>
           </a>
@@ -21,17 +24,16 @@
           <component :is="item.component" :item="item"></component>
 
           <ul class="dropdown-menu" v-if="item.items">
-            <li
-              v-for="item2 in item.items"
-              :item-name="item2.name"
-              :class="item2.options.cssClass">
+            <li v-for="item2 in item.items"
+                :item-name="item2.name"
+                :class="item2.options.cssClass">
               <!-- default component -->
               <a href="" v-if="!item2.component">
                 <span v-if="item2.options.badge"
-                  class="badge pull-right"
-                  :class="item2.options.badge.cssClass">{{ item2.options.badge.title }}</span>
+                      class="badge pull-right"
+                      :class="item2.options.badge.cssClass">{{ item2.options.badge.title }}</span>
                 <span v-if="item2.options.label"
-                  class="label bg-info pull-right">{{ item2.options.label.title }}</span>
+                      class="label bg-info pull-right">{{ item2.options.label.title }}</span>
                 <span>{{ item2.options.title }}</span>
               </a>
               <!-- custom component -->

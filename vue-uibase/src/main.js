@@ -11,13 +11,11 @@ function UiBaseCore() {
 
   // UI State, will be persisted on each change
   this.state = {
+    isHeaderFixed: true,
+    isAsideFixed: true,
     isAsideFolded: false,
-    isHeaderFixed: true
-  };
-
-  // Current session context
-  this.context = {
-
+    isAsideDock: true,
+    isContainer: false
   };
 
   this.router = new RouterBuilder(this);

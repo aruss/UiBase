@@ -1,11 +1,11 @@
 module.exports = function (uiBase) {
 
   // Routes
-  uiBase.router.addRoute({
+  uiBase.router.addRoutes([{
     path: '/examples/allinone',
     component: () =>
       import ('./pages/examples/allinone.vue')
-  });
+  }]);
 
 
   uiBase.aside.addItem({
@@ -15,11 +15,12 @@ module.exports = function (uiBase) {
     items: [{
       name: 'application',
       options: {
-        title: 'Application',
+        title: 'Application'
       },
       items: [{
         name: 'examples',
         options: {
+          bold: true,
           title: 'Examples',
           icon: 'glyphicon glyphicon-stats icon text-primary-dker',
         },

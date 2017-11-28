@@ -1,12 +1,17 @@
 <template>
   <div class="app"
     :class="{
+      'app-header-fixed': state.isHeaderFixed,
+      'app-aside-fixed': state.isAsideFixed,
       'app-aside-folded': state.isAsideFolded,
-      'app-header-fixed': state.isHeaderFixed
+      'app-aside-dock': state.isAsideDock,
+      'container': state.isContainer
     }">
+
     <uib-aside></uib-aside>
     <uib-header></uib-header>
     <div id="content" class="app-content" role="main">
+      <uib-loading-bar></uib-loading-bar>
       <router-view></router-view>
     </div>
     <uib-footer></uib-footer>
@@ -26,6 +31,7 @@ import UiBase from '../../main';
 import uibAside from './aside.vue';
 import uibHeader from './header.vue';
 import uibFooter from './footer.vue';
+import uibLoadingBar from './loading-bar.vue';
 
 export default {
   mounted() {
@@ -39,7 +45,8 @@ export default {
   components: {
     uibAside,
     uibHeader,
-    uibFooter
+    uibFooter,
+    uibLoadingBar
   },
 
   watch: {

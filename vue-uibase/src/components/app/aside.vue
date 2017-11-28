@@ -1,18 +1,20 @@
 <template>
   <aside id="aside" class="app-aside hidden-xs bg-dark">
-      <div class="aside-wrap">
-          <div v-for="item in items" :key="item.name">
-            <component :is="item.component" :item="item"></component>
-          </div>
+    <div class="aside-wrap">
+      <div class="navi-wrap">
+        <component v-for="item in items" :is="item.component" :item="item"></component>
       </div>
       <div class="app-aside-footer">
         <div class="wrapper bg-dark">
-          <a class="btn no-shadow active" v-on:click.stop="$broadcast('aside-toggle')">
+          <a class="btn no-shadow"
+            :class="{'active': state.isAsideFolded}"
+            v-on:click.stop="$broadcast('aside-toggle')">
             <i class="fa fa-dedent fa-fw text"></i>
             <i class="fa fa-indent fa-fw text-active"></i>
           </a>
         </div>
       </div>
+    </div>
   </aside>
 </template>
 
@@ -33,7 +35,6 @@ export default {
 
     return {
       state: UiBase.state,
-      context: UiBase.context,
       items: []
     }
   }

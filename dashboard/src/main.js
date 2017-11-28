@@ -52,6 +52,35 @@ UiBase.header.addItem({
   }
 }, 'menu-right/user');
 
+
+// Add dummy nodes
+for(var i = 0; i < 4; i++) {
+
+  for(var j = 0; j < 10; j++) {
+
+    UiBase.aside.addItems([{
+        name: 'foo',
+        options: {
+          title: 'Foo',
+        },
+        items: [{
+          name: 'examples' + i,
+          options: {
+            title: 'Examples ' + i,
+            icon: 'glyphicon glyphicon-stats icon text-primary-dker',
+          },
+          items: [{
+            name: 'all-in-one-' + j,
+            options: {
+              title: 'All in one ' + j,
+              path: '/examples/allinone-' + j
+            }
+          }]
+        }]
+      }], 'menu');
+  }
+}
+
 /*UiBase.aside.addItems([{
   name: 'aside-thingy1',
   component: () =>
@@ -63,6 +92,5 @@ UiBase.header.addItem({
     import ('./components/aside-thingy.vue'),
   after: 'menu'
 }]);*/
-
 
 UiBase.initialize();

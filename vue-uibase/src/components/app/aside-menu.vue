@@ -1,5 +1,5 @@
 <template>
-  <div class="navi-wrap">
+
     <nav ui-nav="" class="navi clearfix">
 
       <ul class="nav">
@@ -29,29 +29,32 @@
               </span>
               <i v-if="item1.icon"
                  :class="item1.icon"></i>
-              <span class="font-bold">{{ item1.title }}</span>
+              <span :class="{'font-bold': item1.bold}">{{ item1.title }}</span>
             </a>
 
             <ul class="nav nav-sub dk">
-              <li class="nav-sub-header"
-                  v-for="item2 in item1.items"
+              <li class="nav-sub-header"><!--<a href><span>Whaaat</span></a>--></li>
+              <li v-for="item2 in item1.items"
                   :class="{'active': item2.isActive }">
-
+                <!-- default component -->
                 <router-link :key="item2.name"
-                             :to="item2.options.path">
+                             :to="item2.options.path"
+                             v-if="!item2.component">
 
                   <i v-if="item2.options.icon"
                      :class="item2.options.icon"></i>
 
                   <span>{{ item2.options.title }}</span>
                 </router-link>
+                <!-- custom component -->
+                <component :is="item2.component" :item="item2"></component>
               </li>
             </ul>
           </template>
         </li>
       </ul>
     </nav>
-  </div>
+
 </template>
 
 <script>
@@ -79,8 +82,6 @@ export default {
 
     items.forEach((item1, i) => {
 
-      console.log(item1.name);
-
       let item1vm = {
         name: item1.name,
         title: item1.options ? item1.options.title || item1.name : item1.name,
@@ -91,12 +92,11 @@ export default {
 
       item1.items.forEach((item2, j) => {
 
-        console.log(" " + item2.name);
-
         let item2vm = {
           name: item2.name,
           title: item2.options ? item2.options.title || item2.name : item2.name,
           icon: item2.options ? item2.options.icon : null,
+          bold: item2.options.bold,
           isGroup: false,
           isActive: false,
           parent: item1vm,
@@ -105,8 +105,6 @@ export default {
         vm.push(item2vm);
 
         item2.items.forEach((item3, k) => {
-
-          console.log("  " + item3.name);
 
           let item3vm = {
             name: item3.name,
@@ -144,18 +142,10 @@ export default {
         setItem(this.$route.path);
       }
     });
-
-    /*if (this.$route) {
-
-      console.log("has route", this.$route);
-      setItem(this.$route.path);
-    }*/
   },
 
   methods: {
     toggleItem(item, e) {
-
-      console.log("toggling item");
 
       if (this.itemActive === item) {
 
@@ -166,6 +156,7 @@ export default {
       if (this.itemActive) {
 
         this.itemActive.isActive = false;
+
         if (this.itemActive.parent) {
 
           this.itemActive.parent.isActive = false;
@@ -174,12 +165,11 @@ export default {
 
       this.itemActive = item;
       this.itemActive.isActive = true;
+
       if (this.itemActive.parent) {
 
         this.itemActive.parent.isActive = true;
       }
-
-      console.log("toggleItem", this.itemActive);
     }
   },
 
