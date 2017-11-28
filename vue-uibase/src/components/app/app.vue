@@ -1,8 +1,8 @@
 <template>
   <div class="app"
     :class="{
-      'app-aside-folded': global.isAsideFolded,
-      'app-header-fixed': global.isHeaderFixed
+      'app-aside-folded': state.isAsideFolded,
+      'app-header-fixed': state.isHeaderFixed
     }">
     <uib-aside></uib-aside>
     <uib-header></uib-header>
@@ -32,7 +32,7 @@ export default {
 
     UiBase.on('aside-toggle', (d) => {
 
-      this.global.isAsideFolded = !this.global.isAsideFolded;
+      this.state.isAsideFolded = !this.state.isAsideFolded;
     });
   },
 
@@ -42,10 +42,18 @@ export default {
     uibFooter
   },
 
+  watch: {
+    state: function(val, oldVal){
+
+      console.log(val);
+    }
+  },
+
   data() {
 
     return {
-      global: UiBase.global
+      state: UiBase.state,
+      context: UiBase.context
     };
   }
 }

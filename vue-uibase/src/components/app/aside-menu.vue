@@ -3,36 +3,51 @@
     <nav ui-nav="" class="navi clearfix">
 
       <ul class="nav">
-        <li v-for="item in items" :key="item.key"
+        <li v-for="item1 in items"
+            :key="item1.name"
             :class="{
-              'hidden-folded padder m-t m-b-sm text-muted text-xs': !item.items,
-              'active': item.isActive
+              'hidden-folded padder m-t m-b-sm text-muted text-xs': !item1.items,
+              'active': item1.isActive
             }">
-            <span v-if="item.isGroup">{{ item.title }}</span>
+          <span v-if="item1.isGroup">{{ item1.title }}</span>
 
-            <router-link v-if="!item.isGroup && !item.items" :key="item.key" :to="item.path">
-              <i v-if="item.icon" :class="item.icon"></i>
-              <span>{{ item.title }}</span>
-            </router-link>
+          <router-link v-if="!item1.isGroup && !item1.items"
+                       :key="item1.name"
+                       :to="item1.path">
+            <i v-if="item1.icon"
+               :class="item1.icon"></i>
+            <span>{{ item1.title }}</span>
+          </router-link>
 
-            <template v-if="item.items">
-              <a v-on:click="toggleItem(item, $event)" class="auto">
-                <span class="pull-right text-muted" v-if="item.items">
-                  <i class="fa fa-fw fa-angle-right text"></i>
-                  <i class="fa fa-fw fa-angle-down text-active"></i>
-                </span>
-                <i v-if="item.icon" :class="item.icon"></i>
-                <span class="font-bold">{{ item.title }}</span>
-              </a>
-              <ul class="nav nav-sub dk">
-                <li class="nav-sub-header" v-for="item2 in item.items">
-                  <router-link :key="item2.name" :to="item2.options.path">
-                    <i v-if="item2.options.icon" :class="item2.options.icon"></i>
-                    <span>{{ item2.options.title }}</span>
-                  </router-link>
-                </li>
-              </ul>
-            </template>
+          <template v-if="item1.items">
+            <a v-on:click="toggleItem(item1, $event)"
+               class="auto">
+              <span class="pull-right text-muted"
+                    v-if="item1.items">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+              </span>
+              <i v-if="item1.icon"
+                 :class="item1.icon"></i>
+              <span class="font-bold">{{ item1.title }}</span>
+            </a>
+
+            <ul class="nav nav-sub dk">
+              <li class="nav-sub-header"
+                  v-for="item2 in item1.items"
+                  :class="{'active': item2.isActive }">
+
+                <router-link :key="item2.name"
+                             :to="item2.options.path">
+
+                  <i v-if="item2.options.icon"
+                     :class="item2.options.icon"></i>
+
+                  <span>{{ item2.options.title }}</span>
+                </router-link>
+              </li>
+            </ul>
+          </template>
         </li>
       </ul>
     </nav>
@@ -62,41 +77,63 @@ export default {
     let vm = [];
     let itemsByPath = {};
 
-    for (let i = 0; i < items.length; i++) {
+    items.forEach((item1, i) => {
 
-      let item = items[i];
+      console.log(item1.name);
 
-      vm.push({
-        key: i,
-        title: item.options ? item.options.title || item.name : item.name,
+      let item1vm = {
+        name: item1.name,
+        title: item1.options ? item1.options.title || item1.name : item1.name,
         isGroup: true,
         isActive: false
-      });
+      }
+      vm.push(item1vm);
 
-      for (let j = 0; j < item.items.length; j++) {
+      item1.items.forEach((item2, j) => {
 
-        let item2 = item.items[j];
+        console.log(" " + item2.name);
 
-        vm.push({
-          key: j,
+        let item2vm = {
+          name: item2.name,
           title: item2.options ? item2.options.title || item2.name : item2.name,
           icon: item2.options ? item2.options.icon : null,
-          items: item2.items,
           isGroup: false,
-          isActive: false
+          isActive: false,
+          parent: item1vm,
+          items: []
+        };
+        vm.push(item2vm);
+
+        item2.items.forEach((item3, k) => {
+
+          console.log("  " + item3.name);
+
+          let item3vm = {
+            name: item3.name,
+            component: item3.component,
+            options: item3.options,
+            isActive: false,
+            parent: item2vm
+          };
+
+          if (item3.options && item3.options.path) {
+
+            itemsByPath[item3.options.path] = item3vm;
+          }
+
+          item2vm.items.push(item3vm);
         });
-      }
-    }
+      });
+    });
 
     this.items = vm;
 
     let setItem = (path) => {
 
       let item = itemsByPath[path]
-
       if (item) {
 
-        this.toggleItem(item.parent);
+        this.toggleItem(item);
       }
     }
 
@@ -108,14 +145,17 @@ export default {
       }
     });
 
-    if (this.$route) {
+    /*if (this.$route) {
 
+      console.log("has route", this.$route);
       setItem(this.$route.path);
-    }
+    }*/
   },
 
   methods: {
     toggleItem(item, e) {
+
+      console.log("toggling item");
 
       if (this.itemActive === item) {
 
@@ -126,17 +166,28 @@ export default {
       if (this.itemActive) {
 
         this.itemActive.isActive = false;
+        if (this.itemActive.parent) {
+
+          this.itemActive.parent.isActive = false;
+        }
       }
 
       this.itemActive = item;
       this.itemActive.isActive = true;
+      if (this.itemActive.parent) {
+
+        this.itemActive.parent.isActive = true;
+      }
+
+      console.log("toggleItem", this.itemActive);
     }
   },
 
   data() {
 
     return {
-      global: UiBase.global,
+      state: UiBase.state,
+      context: UiBase.context,
       itemActive: null,
       items: []
     }

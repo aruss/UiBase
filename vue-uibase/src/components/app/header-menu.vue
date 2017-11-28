@@ -58,7 +58,8 @@ export default {
   data() {
 
     return {
-      global: UiBase.global,
+      state: UiBase.state,
+      context: UiBase.context,
       items: [],
     }
   }

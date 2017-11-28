@@ -9,9 +9,15 @@ Vue.config.devtools = true;
 
 function UiBaseCore() {
 
-  this.global = {
+  // UI State, will be persisted on each change
+  this.state = {
     isAsideFolded: false,
     isHeaderFixed: true
+  };
+
+  // Current session context
+  this.context = {
+
   };
 
   this.router = new RouterBuilder(this);
