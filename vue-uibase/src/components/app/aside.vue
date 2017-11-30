@@ -1,11 +1,11 @@
 <template>
-  <aside id="aside" class="app-aside hidden-xs bg-dark">
+  <aside id="aside" class="app-aside hidden-xs bg-white b-r">
     <div class="aside-wrap">
       <div class="navi-wrap">
         <component v-for="item in items" :is="item.component" :item="item"></component>
       </div>
       <div class="app-aside-footer">
-        <div class="wrapper bg-dark">
+        <div class="wrapper ">
           <a class="btn no-shadow"
             :class="{'active': state.isAsideFolded}"
             v-on:click.stop="$broadcast('aside-toggle')">
@@ -27,6 +27,12 @@ export default {
   mounted () {
 
     this.items = UiBase.aside.getItems();
+
+     UiBase.on('aside-off-screen', (d) => {
+
+      //  .app-aside
+    });
+
   },
   components: {
     uibAsideMenu

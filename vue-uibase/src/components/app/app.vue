@@ -12,7 +12,12 @@
     <uib-header></uib-header>
     <div id="content" class="app-content" role="main">
       <uib-loading-bar></uib-loading-bar>
-      <router-view></router-view>
+      <a href=""
+         class="off-screen-toggle hide"
+         v-on:click.stop="$broadcast('aside-off-screen')"></a>
+      <div class="app-content-body">
+        <router-view></router-view>
+      </div>
     </div>
     <uib-footer></uib-footer>
   </div>

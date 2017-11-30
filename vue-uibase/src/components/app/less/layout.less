@@ -383,6 +383,7 @@ body{
 }
 // xs
 @media (max-width: 767px) {
+
   .app-aside{
     float: none;
   }
@@ -398,20 +399,24 @@ body{
     }
   }
   .navbar-nav{
+
     margin-top: 0;
     margin-bottom: 0;
-    > li > a{
-      box-shadow:0 -1px 0 rgba(0,0,0,0.1);
-      .up{
-        top: 0;
+    > li {
+      width: 100%;
+      > a{
+        box-shadow:0 -1px 0 rgba(0,0,0,0.1);
+        .up{
+          top: 0;
+        }
+        .avatar{
+          width: 30px;
+          margin-top: -5px;
+        }
       }
-      .avatar{
-        width: 30px;
-        margin-top: -5px;
+      .open .dropdown-menu{
+        background-color: #fff;
       }
-    }
-    .open .dropdown-menu{
-      background-color: #fff;
     }
   }
   .navbar-form{
@@ -420,6 +425,54 @@ body{
     margin-bottom: 0 !important;
     .form-group{
       margin-bottom: 0;
+    }
+  }
+}
+
+
+// Dropdown menu for headers black theme
+// FIX ME: Support color theming!
+.app-header {
+  .bg-black {
+
+    ul.dropdown-menu {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border: 0;
+      background-color: #16232D;
+
+      li {
+        a {
+          color: #869fb1;
+        }
+
+        a:hover {
+          background: lighten(#16232D, 10%) !important;
+        }
+      }
+
+      li.divider {
+        background-color: lighten(#16232D, 20%);
+      }
+    }
+  }
+}
+
+// xs
+@media (max-width: 767px) {
+
+  .app-header {
+    .navbar-nav  {
+      a {
+        line-height: 25px !important;
+      }
+      ul.dropdown-menu {
+        li {
+          a {
+            line-height: 25x !important;
+          }
+        }
+      }
     }
   }
 }

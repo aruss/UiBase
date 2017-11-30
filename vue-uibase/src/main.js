@@ -14,7 +14,7 @@ function UiBaseCore() {
     isHeaderFixed: true,
     isAsideFixed: true,
     isAsideFolded: false,
-    isAsideDock: true,
+    isAsideDock: false,
     isContainer: false
   };
 
@@ -59,6 +59,11 @@ Vue.mixin({
     $broadcast(name, data) {
 
       uiBase.broadcast(name, data);
+    },
+
+    $toggleClass(cssClass, target) {
+
+      $(target).toggleClass(cssClass);
     }
   }
 });

@@ -1,7 +1,10 @@
 <template>
   <div>
     <template v-for="item in items">
-      <div class="nav navbar-nav"  v-if="!item.items" :item-name="item.name">
+      <div class="nav navbar-nav"
+           :class="item.options.cssClass"
+           v-if="!item.items"
+           :item-name="item.name">
         <!-- default component -->
         <a href="#" class="btn no-shadow navbar-btn" v-if="!item.component">
           <i v-if="item.options.icon" :class="item.options.icon"></i>
@@ -10,8 +13,11 @@
         <!-- custom component -->
         <component :is="item.component" :item="item"></component>
       </div>
-      <ul class="nav navbar-nav" v-if="item.items" :item-name="item.name">
-        <li class="dropdown">
+      <ul class="nav navbar-nav"
+          v-if="item.items"
+          :item-name="item.name">
+        <li class="dropdown"
+            :class="item.options.cssClass">
           <!-- default component -->
           <a href="#"
              data-toggle="dropdown"
@@ -28,7 +34,7 @@
                 :item-name="item2.name"
                 :class="item2.options.cssClass">
               <!-- default component -->
-              <a href="" v-if="!item2.component">
+              <a href="#" v-if="!item2.component">
                 <span v-if="item2.options.badge"
                       class="badge pull-right"
                       :class="item2.options.badge.cssClass">{{ item2.options.badge.title }}</span>

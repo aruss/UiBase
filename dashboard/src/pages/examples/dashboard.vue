@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content-body ">
+  <div>
     <uib-page-header title="Dashboard" subtitle="foo bar lorem ipsum"></uib-page-header>
     <div class="wrapper-md">
       test

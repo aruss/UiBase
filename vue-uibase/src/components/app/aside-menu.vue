@@ -1,7 +1,5 @@
 <template>
-
-    <nav ui-nav="" class="navi clearfix">
-
+    <nav class="navi clearfix">
       <ul class="nav">
         <li v-for="item1 in items"
             :key="item1.name"

@@ -44,6 +44,7 @@ module.exports = function (uiBase) {
       name: 'foo',
       options: {
         icon: 'icon-user fa-fw',
+        cssClass: 'hidden-xs'
       }
     }, {
       name: 'new',
@@ -68,6 +69,11 @@ module.exports = function (uiBase) {
       }]
     }]
   }, {
+    name: 'menu-search',
+    group: 'left',
+    component: () =>
+      import ('./components/app/header-search.vue')
+   }, {
     name: 'menu-right',
     group: 'right',
     component: () =>

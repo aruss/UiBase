@@ -1,11 +1,13 @@
 <template>
   <header id="header" class="app-header navbar" role="menu">
       <!-- navbar header -->
-      <div class="navbar-header bg-dark">
-        <button class="pull-right visible-xs dk" ui-toggle-class="show" target=".navbar-collapse">
+      <div class="navbar-header bg-black">
+        <button class="pull-right visible-xs"
+          v-on:click.stop="$toggleClass('show', '.navbar-collapse')">
           <i class="glyphicon glyphicon-cog"></i>
         </button>
-        <button class="pull-right visible-xs" ui-toggle-class="off-screen" target=".app-aside" ui-scroll="app">
+        <button class="pull-right visible-xs"
+          v-on:click.stop="$toggleClass('off-screen', '.app-aside')">
           <i class="glyphicon glyphicon-align-justify"></i>
         </button>
         <!-- brand -->
@@ -19,7 +21,7 @@
       <!-- / navbar header -->
 
       <!-- navbar collapse -->
-      <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+      <div class="collapse pos-rlt navbar-collapse box-shadow bg-black">
 
         <div v-for="item in itemsLeft" :key="item.name">
           <div class="navbar-left">

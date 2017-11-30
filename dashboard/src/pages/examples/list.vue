@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content-body ">
+  <div>
     <uib-page-header title="Foos" subtitle="Here some kind of explanation what this hack is all about"></uib-page-header>
     <div class="wrapper-md">
 
