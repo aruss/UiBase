@@ -10,8 +10,8 @@
 
     <uib-aside></uib-aside>
     <uib-header></uib-header>
+    <uib-loading-bar></uib-loading-bar>
     <div id="content" class="app-content" role="main">
-      <uib-loading-bar></uib-loading-bar>
       <a href=""
          class="off-screen-toggle hide"
          v-on:click.stop="$broadcast('aside-off-screen')"></a>

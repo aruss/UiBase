@@ -19,34 +19,29 @@
 </template>
 
 <script>
-
-import UiBase from '../../main';
-import uibAsideMenu from './aside-menu.vue';
+import UiBase from "../../main";
+import uibAsideMenu from "./aside-menu.vue";
 
 export default {
-  mounted () {
-
+  mounted() {
     this.items = UiBase.aside.getItems();
 
-     UiBase.on('aside-off-screen', (d) => {
-
+    UiBase.on("aside-off-screen", d => {
       //  .app-aside
     });
-
   },
   components: {
     uibAsideMenu
   },
-  data () {
-
+  data() {
     return {
       state: UiBase.state,
       items: []
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="less">
-//@import "./less/variables.less";
+@import "./less/variables.less";
 </style>
