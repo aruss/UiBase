@@ -19,3 +19,7 @@
 ```
   this.$broadcast('someevent', { foo: 'bar' })
 ```
+
+
+
+https://github.com/vuejs-templates/webpack

@@ -1,0 +1,64 @@
+@import "../app/scss/variables.scss";
+
+.grid {
+
+  &.uib-panel {
+     padding-top: 0px;
+  }
+
+
+  .table {
+    thead {
+      tr {
+        th {
+          border-bottom-width: 1px;
+
+          /*&:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }*/
+        }
+      }
+    }
+    tbody {
+      tr {
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: $lightdark;
+        }
+
+        td {
+          white-space: nowrap;
+
+          /*&:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }*/
+        }
+      }
+    }
+  }
+
+  &.grid-headless {
+    .table th, .table td {
+      border-top: none;
+    }
+  }
+
+  .pagination {
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+
+  .pagination-info {
+    font-size: 0.875rem;
+  }
+}

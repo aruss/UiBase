@@ -1,23 +1,30 @@
-# vue-loader [![Build Status](https://circleci.com/gh/vuejs/vue-loader/tree/master.svg?style=shield)](https://circleci.com/gh/vuejs/vue-loader/tree/master) [![Windows Build status](https://ci.appveyor.com/api/projects/status/8cdonrkbg6m4k1tm/branch/master?svg=true)](https://ci.appveyor.com/project/yyx990803/vue-loader/branch/master) [![npm package](https://img.shields.io/npm/v/vue-loader.svg?maxAge=2592000)](https://www.npmjs.com/package/vue-loader)
+# vue-uibase
 
-> Vue.js component loader for [Webpack](https://webpack.js.org/).
+> A Vue.js project
 
-**NOTE: the master branch (9.0+) only works with Vue 2.x. For usage with Vue 1.x, see the [8.x branch](https://github.com/vuejs/vue-loader/tree/8.x).**
+## Build Setup
 
-It allows you to write your components in this format:
-
-![screenshot](http://blog.evanyou.me/images/vue-component.png)
-
-The best way to get started is with [vue-cli](https://github.com/vuejs/vue-cli):
-
-``` js
-npm install -g vue-cli
-vue init webpack-simple hello
-cd hello
+``` bash
+# install dependencies
 npm install
+
+# serve with hot reload at localhost:8080
 npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
+npm run unit
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
 ```
 
-This will setup a basic Webpack + `vue-loader` project for you, with `*.vue` files and hot-reloading working out of the box!
-
-For advanced `vue-loader` configuration, checkout the [documentation](https://vue-loader.vuejs.org).
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
