@@ -229,23 +229,7 @@ body.fixed-left {
 }
 
 .sidebar-inner {
-  overflow-y: auto;
-  position: absolute;
-  top: 0;
-  bottom: $footer-height;
-  width: 240px;
-}
-
-.sidebar-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  bottom: 0;
-  text-align: left !important;
-  padding: 20px 30px;
-  position: absolute;
-  right: 0;
-  width: 240px;
-  font-size: 13px;
-  height: $footer-height;
+  height: $height;
 }
 
 #sidebar-menu,
@@ -263,8 +247,8 @@ body.fixed-left {
 }
 
 #sidebar-menu {
-  //padding-bottom: 30px;
-  //padding-top: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   width: 100%;
   .nav>li>a {
     .badge {
@@ -279,8 +263,6 @@ body.fixed-left {
   ul {
     ul {
       display: none;
-
-
       li {
         border-top: 0;
       }
@@ -310,14 +292,10 @@ body.fixed-left {
   .label {
     margin-top: 2px;
   }
-  /* .subdrop {
+  .subdrop {
     background: $lightdark !important;
     border-left: 3px solid $custom;
     color: $custom !important;
-  }*/
-
-  .subdrop.active~ul {
-    display: block;
   }
 }
 
@@ -774,7 +752,6 @@ body.fixed-left {
 }
 
 /* Seach */
-
 .app-search {
   position: relative;
   padding-top: 18px;

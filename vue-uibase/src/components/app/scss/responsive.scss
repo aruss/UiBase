@@ -29,12 +29,12 @@
   .app-search {
     display: none;
   }
-  .left.side-menu,.sidebar-inner.slimscrollleft {
+  .left.sidebar,.sidebar-inner.slimscrollleft {
     overflow: auto !important;
   }
 
   .enlarged {
-    .left.side-menu {
+    .left.sidebar {
       margin-left: -75px;
     }
   }
@@ -132,7 +132,7 @@
   .navbar-custom {
     margin-left: 70px !important;
   }
-  .side-menu {
+  .sidebar {
     z-index: 10 !important;
   }
 
@@ -194,12 +194,12 @@
     margin-left: 70px;
   }
   .forced {
-    .side-menu.left {
+    .sidebar.left {
       box-shadow: 0 12px 12px rgba(0, 0, 0, 0.1);
     }
   }
   .enlarged {
-    .side-menu.left {
+    .sidebar.left {
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) !important;
     }
   }

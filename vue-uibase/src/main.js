@@ -1,3 +1,5 @@
+// Setup view.js here
+
 import Vue from 'vue';
 import UiBaseCore from './uibase-core.js';
 import VueRouter from 'vue-router'

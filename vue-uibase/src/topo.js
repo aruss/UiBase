@@ -1,3 +1,4 @@
+// Utility class for topological sorting
 // Borrowed from https://github.com/hapijs/topo/blob/master/API.md
 
 import Utils from './utils';
@@ -60,7 +61,6 @@ internals.Topo.prototype.add = function (nodes, options) {
   return this.nodes;
 };
 
-
 internals.Topo.prototype.merge = function (others) {
 
   others = [].concat(others);
@@ -87,12 +87,10 @@ internals.Topo.prototype.merge = function (others) {
   return this.nodes;
 };
 
-
 internals.mergeSort = function (a, b) {
 
   return a.sort === b.sort ? 0 : (a.sort < b.sort ? -1 : 1);
 };
-
 
 internals.Topo.prototype._sort = function () {
 

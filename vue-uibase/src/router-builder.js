@@ -1,3 +1,5 @@
+// UiBase route builder, it creates a VueRouter from list of route definitions
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -8,6 +10,8 @@ function RouterBuilder(uiBase) {
   this.buildRouter = () => {
 
     // TODO: set default route if no "/" route is defined...
+
+    // TODO: convert flat dict to tree
 
     let router = new VueRouter({
       routes: Object.values(_routes)
@@ -32,8 +36,8 @@ function RouterBuilder(uiBase) {
 
   this.addRoute = (route) => {
     // TODO: do object validation
-    // TODO: check duplicate routes
 
+    // check duplicate routes
     if (_routes[route.path]) {
 
       // TODO: prevent webpack from removing the console.log statement
@@ -42,7 +46,9 @@ function RouterBuilder(uiBase) {
 
       _routes[route.path] = route;
     }
-  }
+  };
+
+  // TODO: create interface for default route
 };
 
 export default RouterBuilder;

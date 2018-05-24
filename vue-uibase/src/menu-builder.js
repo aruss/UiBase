@@ -1,3 +1,6 @@
+// UiBase menu builder, it gathers menu item definitions softs them and
+// adds default values
+
 import Utils from './utils';
 import Topo from './topo';
 

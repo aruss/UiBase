@@ -12,7 +12,7 @@
       </div>
     </div>
 
-
+    <i class="fa fa-rocket"></i> fa-rocket
 
   </div>
 </template>

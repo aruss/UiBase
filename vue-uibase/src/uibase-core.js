@@ -1,7 +1,8 @@
+// UiBase main API here
+
 import Vue from 'vue';
 import App from './components/app/app.vue';
 import RouterBuilder from './router-builder.js';
-import ListBuilder from './list-builder.js';
 import MenuBuilder from './menu-builder.js';
 import Lazy from 'lazy.js';
 
@@ -37,7 +38,8 @@ function UiBaseCore() {
     // TODO: check if defined and if object
 
     this.options = Lazy({
-        title: 'uibase'
+        title: 'uibase',
+        icon: 'fa fa-rocket'        
       })
       .merge(options || {})
       .toObject();

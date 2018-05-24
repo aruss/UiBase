@@ -1,7 +1,7 @@
 <template>
   <!-- Left Sidebar Start -->
-  <div class="left side-menu">
-    <div class="sidebar-inner slimscrollleft">
+  <div class="sidebar">
+    <div class="sidebar-inner">
 
      <component
         :is="item.component"
@@ -11,63 +11,31 @@
 
       <div class="clearfix"></div>
     </div>
-    <div class="sidebar-footer">footer</div>
+    <div class="sidebar-footer">
+
+        <ui-trigger 
+        icon="ti-angle-left"
+        icon-active="ti-angle-right"
+        v-on:click="$broadcast('sidebar-toggle')" >
+      </ui-trigger>
+
+    </div>
   </div>
   <!-- Left Sidebar End -->
 </template>
 
 <script>
 import uiBase from "../../main";
+import utils from "../../utils";
 
-function toggleSlimscroll(item) {
-  if ($("#wrapper").hasClass("enlarged")) {
-    $(item).css("overflow", "inherit").parent().css("overflow", "inherit");
-    $(item).siblings(".slimScrollBar").css("visibility", "hidden");
-  } else {
-    $(item).css("overflow", "hidden").parent().css("overflow", "hidden");
-    $(item).siblings(".slimScrollBar").css("visibility", "visible");
-  }
-}
-
-function toggleSidebar() {
-  $("#wrapper").toggleClass("enlarged");
-  $("#wrapper").addClass("forced");
-
-  if ($("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left")) {
-    $("body").removeClass("fixed-left").addClass("fixed-left-void");
-  } else if (!$("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left-void")) {
-    $("body").removeClass("fixed-left-void").addClass("fixed-left");
-  }
-
-  if ($("#wrapper").hasClass("enlarged")) {
-    $(".left ul").removeAttr("style");
-  } else {
-    $(".subdrop").siblings("ul:first").show();
-  }
-
-  //toggleSlimscroll(".slimscrollleft");
-  $("body").trigger("resize");
-}
-
-function initJquery() {
-  /*if (jQuery.browser.mobile !== true) {
-      $('.left.side-menu .slimscrollleft').slimScroll({
-        height: 'auto',
-        position: 'right',
-        size: '5px',
-        color: '#98a6ad',
-        wheelStep: 5
-      });
-    }*/
-}
+import uiTrigger from "./trigger.vue";
 
 export default {
   mounted() {
-
     uiBase.on("sidebar-toggle", d => {
-
-      console.log('sidebar-toggle@sidebar');
-      //toggleSidebar();
+      this.sidebarCollapsed = !this.sidebarCollapsed;
+      utils.addBodyClass("sidebar-collapsed", this.sidebarCollapsed);
+      // TODO: Save options
     });
   },
   computed: {
@@ -75,15 +43,57 @@ export default {
       return UiBase.sidebar.getItems();
     }
   },
-   data() {
+  data() {
     return {
+      sidebarCollapsed: false,
+      enbaleFooter: false, 
       options: uiBase.options,
       context: uiBase.context
     };
+  },
+  components: {
+    uiTrigger
   }
 };
 </script>
 
 <style lang="scss">
+@import "./scss/variables.scss";
 
+.sidebar {
+  bottom: 0;
+  top: 0;
+  width: $sidebar-width;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: $topbar-height;
+
+  .sidebar-inner {
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    bottom: $footer-height;
+    width:100%;
+  }
+
+  .sidebar-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    text-align: left !important;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    font-size: 13px;
+    height: $footer-height;
+  }
+}
+
+body.sidebar-collapsed .sidebar{
+  width: $sidebar-collapsed-width;
+
+
+}
 </style>

@@ -39,7 +39,7 @@ uiBase.sidebar.addItem({
       options: {
         bold: true,
         title: 'Examples 1',
-        icon: 'glyphicon glyphicon-stats icon text-primary-dker',
+        icon: 'ti-home',
       },
       items: [{
           name: 'allinone',
@@ -68,7 +68,7 @@ uiBase.sidebar.addItem({
       options: {
         bold: true,
         title: 'Examples 2',
-        icon: 'glyphicon glyphicon-stats icon text-primary-dker',
+        icon: 'ti-paint-bucket',
       },
       items: [
         {

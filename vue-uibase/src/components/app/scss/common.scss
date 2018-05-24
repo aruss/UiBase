@@ -126,3 +126,49 @@ a {
     }
   }
 }
+
+// Trigger button
+.btn-trigger {
+  > * {
+    display: block;
+  }
+  .btn-trigger-active {
+    display: none;
+  }
+
+  &.active {
+    > * {
+      display: none;
+    }
+    .btn-trigger-active {
+      display: block;
+    }
+  }
+}
+
+// Content page ----------------------------------------------------------------
+.content-page {
+  margin-left: $sidebar-width;
+  margin-top: $topbar-height;
+  overflow: hidden;
+}
+
+body.sidebar-collapsed {
+  .content-page {
+    margin-left: $sidebar-collapsed-width;
+  }
+}
+
+/*
+// Footer ----------------------------------------------------------------------
+.footer {
+  left: $sidebar-width;
+}
+
+body.sidebar-collapsed {
+
+  .footer {
+    left: $sidebar-collapsed-width;
+  }
+}
+*/

@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" class="forced">
+  <div id="wrapper">
     <uib-top-bar></uib-top-bar>
     <uib-side-bar></uib-side-bar>
     <div class="content-page">
@@ -7,7 +7,7 @@
         <router-view></router-view>
       </div>
       <div class="footer text-right">
-          © 2017. All rights reserved.
+         copyright text here
       </div>
     </div>
   </div>
@@ -17,26 +17,45 @@
 import "../../../node_modules/jquery/dist/jquery.js";
 import "../../../node_modules/popper.js/dist/popper.js";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.js";
-import "./js/detect.js";
-import "./js/fastclick.js";
-import "./js/jquery.slimscroll.js";
-import "./js/jquery.blockUI.js";
+// import "./js/theme.js";
+
+//import "./js/detect.js";
+//import "./js/fastclick.js";
+//import "./js/jquery.slimscroll.js";
+//import "./js/jquery.blockUI.js";
 // import "./js/waves.js";
-import "./js/wow.min.js";
-import "./js/jquery.nicescroll.js";
-import "./js/jquery.scrollTo.min.js";
+//import "./js/wow.min.js";
+//import "./js/jquery.nicescroll.js";
+//import "./js/jquery.scrollTo.min.js";
 
 import uiBase from "../../main";
-
 import uibTopBar from "./topbar.vue";
 import uibSideBar from "./sidebar.vue";
+import utils from "../../utils.js";
 
 export default {
   mounted() {
-    uiBase.on("sidebar-toggle", d => {
 
+    /*
+    uiBase.on("sidebar-toggle", d => {
       this.options.isSidebarFolded = !this.options.isSidebarFolded;
     });
+
+    uiBase.on("routechanged", d => {
+
+      // TODO: Add meta info for title and scopes
+      document.title = d.to.path;
+    });
+
+    // TODO: Add debounce
+    window.addEventListener('resize', () => {
+
+
+      console.log("resized");
+    });
+    */
+
+   uiBase.broadcast("app-mounted", {});
   },
   components: {
     uibTopBar,
@@ -101,13 +120,13 @@ export default {
 // @import "./scss/pagination";
 // @import "./scss/form-components";
 // @import "./scss/tabs-accordions";
-@import "./scss/alerts";
-@import "./scss/modals";
+// @import "./scss/alerts";
+// @import "./scss/modals";
 // @import "./scss/carousel";
-@import "./scss/menu";
+// @import "./scss/menu";
 @import "./scss/animation";
 @import "./scss/waves";
-@import "./scss/print";
+// @import "./scss/print";
 @import "./scss/buttons";
 @import "./scss/checkbox-radio";
 // @import "./scss/portlets";
@@ -141,10 +160,11 @@ export default {
 // @import "./scss/treeview";
 // @import "./scss/tour";
 // @import "./scss/taskboard";
-@import "./scss/responsive";
+// @import "./scss/responsive";
 
 @import "./scss/icons/dripicons.scss";
 @import "./scss/icons/material-design-iconic-font.scss";
 @import "./scss/icons/themify-icons.scss";
 @import "./scss/icons/font-awesome.scss";
+
 </style>

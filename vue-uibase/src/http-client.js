@@ -1,3 +1,5 @@
+// UiBase HTTP client
+
 import Utils from './utils';
 
 function HttpClient(args) {
