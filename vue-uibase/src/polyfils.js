@@ -1,4 +1,4 @@
-// Do we actually need this shit since we use webpack?
+// TODO: Do we actually need this shit since we use webpack?
 
 if (!Array.isArray) {
   Array.isArray = function (vArg) {

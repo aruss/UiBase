@@ -64,26 +64,40 @@ function isType(source, typeName) {
 }
 
 function debounce(func, wait, immediate) {
-  var timeout;
+
+  let timeout;
+
   return function () {
-    var context = this,
-      args = arguments;
-    var later = function () {
+
+    let context = this;
+    let args = arguments;
+
+    const later = function () {
+
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
-    var callNow = immediate && !timeout;
+
+    const callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
+
+    if (callNow) {
+
+      func.apply(context, args);
+    }
   };
 }
 
-function addBodyClass(className, assertion) {
+// Since you cannot add vue app to body tag there is no way to modelbind something to it
+// In this case we just use jquery way.
+function toggleBodyClass(className, assertion) {
 
   if (assertion) {
+
     $("body").addClass(className);
   } else {
+
     $("body").removeClass(className);
   }
 }
@@ -96,5 +110,5 @@ export default {
   isObject,
   isUndefined,
   debounce,
-  addBodyClass
+  toggleBodyClass
 };

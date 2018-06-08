@@ -1,15 +1,11 @@
 <template>
   <div id="wrapper">
     <uib-top-bar></uib-top-bar>
-    <uib-side-bar></uib-side-bar>
-    <div class="content-page">
-      <div class="content">
-        <router-view></router-view>
-      </div>
-      <div class="footer text-right">
-         copyright text here
-      </div>
+    <div class="app-body">
+      <uib-side-bar></uib-side-bar>
+      <main class="main"></main>
     </div>
+    <uib-footer></uib-footer>
   </div>
 </template>
 
@@ -17,30 +13,31 @@
 import "../../../node_modules/jquery/dist/jquery.js";
 import "../../../node_modules/popper.js/dist/popper.js";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.js";
-// import "./js/theme.js";
+import uiBase from "../../main.js";
+import utils from "../../utils.js";
 
-//import "./js/detect.js";
-//import "./js/fastclick.js";
-//import "./js/jquery.slimscroll.js";
-//import "./js/jquery.blockUI.js";
-// import "./js/waves.js";
-//import "./js/wow.min.js";
-//import "./js/jquery.nicescroll.js";
-//import "./js/jquery.scrollTo.min.js";
-
-import uiBase from "../../main";
+// components
 import uibTopBar from "./topbar.vue";
 import uibSideBar from "./sidebar.vue";
-import utils from "../../utils.js";
+import uibFooter from "./footer.vue";
 
 export default {
   mounted() {
 
-    /*
+
+    // TODO: Make it configurable
+    utils.toggleBodyClass("header-fixed sidebar-fixed aside-menu-fixed");
+
     uiBase.on("sidebar-toggle", d => {
-      this.options.isSidebarFolded = !this.options.isSidebarFolded;
+
+      this.options.sidebarMinimized = !this.options.sidebarMinimized;
+      // TODO: Save options and emit optins change event
+
+
+      utils.toggleBodyClass("sidebar-minimized brand-minimized", this.options.sidebarMinimized);
     });
 
+/*
     uiBase.on("routechanged", d => {
 
       // TODO: Add meta info for title and scopes
@@ -59,7 +56,8 @@ export default {
   },
   components: {
     uibTopBar,
-    uibSideBar
+    uibSideBar,
+    uibFooter
   },
   data() {
     return {
@@ -71,15 +69,18 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../node_modules/bootstrap/scss/_functions.scss";
-@import "../../../node_modules/bootstrap/scss/_variables.scss";
+
+// TODO: Move to own file
 
 // Load it inbetween so you can override bootstrap vars
-@import "./scss/variables.scss";
 
-@import "../../../node_modules/bootstrap/scss/_functions";
-@import "../../../node_modules/bootstrap/scss/_variables";
-@import "../../../node_modules/bootstrap/scss/_mixins";
+@import "./scss/common.scss";
+
+// @import "../../../node_modules/bootstrap/scss/bootstrap";
+//@import "../../../node_modules/bootstrap/scss/_functions";
+//@import "../../../node_modules/bootstrap/scss/_variables";
+//@import "../../../node_modules/bootstrap/scss/_mixins";
+
 @import "../../../node_modules/bootstrap/scss/_root";
 @import "../../../node_modules/bootstrap/scss/_reboot";
 @import "../../../node_modules/bootstrap/scss/_type";
@@ -113,10 +114,15 @@ export default {
 @import "../../../node_modules/bootstrap/scss/_utilities";
 @import "../../../node_modules/bootstrap/scss/_print";
 
+
+@import "./scss/layout.scss";
+@import "./scss/utils.scss";
+@import "./scss/dropdown.scss";
+
 // UiDash
-@import "./scss/common";
-@import "./scss/helper";
-@import "./scss/bootstrap-reset";
+// @import "./scss/common";
+// @import "./scss/helper";
+// @import "./scss/bootstrap-reset";
 // @import "./scss/pagination";
 // @import "./scss/form-components";
 // @import "./scss/tabs-accordions";
@@ -124,11 +130,11 @@ export default {
 // @import "./scss/modals";
 // @import "./scss/carousel";
 // @import "./scss/menu";
-@import "./scss/animation";
-@import "./scss/waves";
+// @import "./scss/animation";
+// @import "./scss/waves";
 // @import "./scss/print";
-@import "./scss/buttons";
-@import "./scss/checkbox-radio";
+// @import "./scss/buttons";
+// @import "./scss/checkbox-radio";
 // @import "./scss/portlets";
 // @import "./scss/progressbars";
 // @import "./scss/tables";
@@ -162,9 +168,12 @@ export default {
 // @import "./scss/taskboard";
 // @import "./scss/responsive";
 
-@import "./scss/icons/dripicons.scss";
-@import "./scss/icons/material-design-iconic-font.scss";
-@import "./scss/icons/themify-icons.scss";
-@import "./scss/icons/font-awesome.scss";
+// @import "./scss/icons/dripicons.scss";
+// @import "./scss/icons/material-design-iconic-font.scss";
+// @import "./scss/icons/themify-icons.scss";
+// @import "./scss/icons/font-awesome.scss";
+
+
+
 
 </style>

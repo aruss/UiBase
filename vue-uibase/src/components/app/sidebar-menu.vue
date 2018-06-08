@@ -169,6 +169,7 @@ export default {
 };
 </script>
 
+<!--
 <style lang="scss">
 @import "./scss/variables.scss";
 
@@ -357,3 +358,4 @@ body.sidebar-collapsed .sidebar-menu {
   }
 }
 </style>
+-->
